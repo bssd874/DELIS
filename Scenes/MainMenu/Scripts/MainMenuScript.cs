@@ -14,8 +14,14 @@ public class MainMenuScript : MonoBehaviour
 
     public void SelectLevelPack(LevelPack levelPack)
     {
-        Database.GameData.currentLevelDatas = levelPack.levelDatas;
+        Database.GameData.levelPack = levelPack;
+        levelPack.LoadAllMusic();
         SceneManager.LoadScene("LevelSelector");
+    }
+
+    public void Back()
+    {
+        Application.Quit();
     }
 
 }

@@ -8,7 +8,28 @@ public class LevelResult
     public int highScore = 0;
     public float skill = 0;
     public int timesPlayed = 0;
-    public string Rank = "F";
+    public Rank rank
+    {
+        get
+        {
+            return GetRank(highScore);
+        }
+    }
+
+    public static Rank GetRank(int Score)
+    {
+        Rank r = Rank.F;
+
+        if (Score >= 1000000) r = Rank.S; else
+        if (Score >= 950000) r = Rank.A; else
+        if (Score >= 880000) r = Rank.B; else
+        if (Score >= 800000) r = Rank.C; else
+        r = Rank.F;
+        
+        return r;
+    }
+
+    public enum Rank {S, A, B, C, F};
 
     public void SaveResult(string levelName, int index)
     {

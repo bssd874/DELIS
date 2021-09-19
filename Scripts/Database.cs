@@ -21,7 +21,15 @@ public static class Database
             }
         }
 
-        public static LevelData[] currentLevelDatas = null;
+        public static LevelPack levelPack = null;
+
+        public static LevelData[] levelDatas
+        {
+            get
+            {
+                return levelPack.levelDatas;
+            }
+        }
     }
 
 }

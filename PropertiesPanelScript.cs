@@ -17,6 +17,11 @@ public class PropertiesPanelScript : MonoBehaviour
     public TMP_Text Stage;
     public TMP_Text Rank;
 
+
+
+    AudioSource audioSource;
+
+
     public void SetLevelData(LevelData newLevelData)
     {
         levelData = newLevelData;
@@ -25,26 +30,47 @@ public class PropertiesPanelScript : MonoBehaviour
 
     public void UpdatePanel()
     {
-        currentStage = currentStage % levelData.noteMaps.Length;
+        UpdateNoteMap();
+        UpdateStage();
+        UpdateRank();
+        UpdateInfo();
+        PlayAudio();
+    }
 
+    public void UpdateRank()
+    {
+        Rank.text = noteMap.levelResult.rank.ToString();
+    }
+
+    public void UpdateNoteMap()
+    {
         noteMap = levelData.noteMaps[currentStage];
+        levelResult = noteMap.levelResult;
+    }
 
-        
+    public void UpdateStage()
+    {
+        currentStage = currentStage % levelData.noteMaps.Length;
+        Stage.text = currentStage.ToString();
+    }
 
-        AudioSource audioSource = LevelSelectorScript.main.audioSource;
+    public void UpdateInfo()
+    {
+        Title.text = levelData.levelName;
+    }
+
+    public void PlayAudio()
+    {
+        audioSource = LevelSelectorScript.main.audioSource;
         AudioClip audioClip = levelData.audioClip;
 
-        print(audioClip);
-
-        audioSource.time = audioSource.time % audioClip.length;
-        audioSource.clip = audioClip;
-        
-        audioSource.Play();
-
-        levelResult = noteMap.levelResult;
-        Stage.text = currentStage.ToString();
-        Rank.text = noteMap.levelResult.Rank;
-        Title.text = levelData.levelName;
+        if (audioSource.clip != audioClip)
+        {
+            audioSource.time = audioSource.time % audioClip.length;
+            audioSource.clip = audioClip;
+            
+            audioSource.Play();
+        }
     }
 
     public void AddStage()

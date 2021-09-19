@@ -21,4 +21,11 @@ public class LevelSelectorScript : MonoBehaviour
         currentLevelData = levelData;
         propertiesPanel.SetLevelData(currentLevelData);
     }
+
+    public void Back()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        Database.GameData.levelPack.UnloadAllMusic();
+    }
+
 }

@@ -14,7 +14,7 @@ public class LevelDataSelector : MonoBehaviour
 
     public void Initialize()
     {
-        LevelData[] levelDatas = Database.GameData.currentLevelDatas;
+        LevelData[] levelDatas = Database.GameData.levelDatas;
 
         foreach (LevelData levelData in levelDatas)
         {
