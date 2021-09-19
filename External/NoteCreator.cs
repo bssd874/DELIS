@@ -74,8 +74,8 @@ public class NoteCreator : MonoBehaviour
     public void SaveNoteMapData()
     {
         string json = JsonUtility.ToJson(noteMap);
-        print("Saved to " + Application.dataPath + "/Resources/Levels/PERSONAL COLLECTION/" + levelData.levelProperties.levelName + "/" + difficultyIndex +".json");
-        Directory.CreateDirectory(Application.dataPath + "/Resources/Levels/PERSONAL COLLECTION/" + levelData.levelProperties.levelName);
-        File.WriteAllText(Application.dataPath + "/Resources/Levels/PERSONAL COLLECTION/" + levelData.levelProperties.levelName + "/" + difficultyIndex +".json", json);
+        print("Saved to " + Application.dataPath + "/Resources/Levels/PERSONAL COLLECTION/" + levelData.levelName + "/" + difficultyIndex +".json");
+        Directory.CreateDirectory(Application.dataPath + "/Resources/Levels/PERSONAL COLLECTION/" + levelData.levelName);
+        File.WriteAllText(Application.dataPath + "/Resources/Levels/PERSONAL COLLECTION/" + levelData.levelName + "/" + difficultyIndex +".json", json);
     }
 }
