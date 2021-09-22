@@ -39,7 +39,7 @@ public class NotePlayer : MonoBehaviour
             SpawnNoteInstance(noteInstance);
             spawnIndex = i;
         }
-
+        GameplayData.Data.EvaluateResult();
         yield return true;
     }
 
@@ -59,6 +59,8 @@ public class NotePlayer : MonoBehaviour
 
     public void SpawnNoteInstance(NoteInstance noteInstance)
     {
-        Instantiate(noteInstance.instance, noteInstance.noteData.worldPosition, Quaternion.identity, transform);
+        
+        GameObject obj = Instantiate(noteInstance.instance, noteInstance.noteData.worldPosition, Quaternion.identity, transform);
+        GameplayData.Data.ApplyCombo();
     }
 }

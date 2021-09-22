@@ -13,7 +13,7 @@ public class NotePack
         for (int i = 0; i < noteDatas.Length; i++)
         {
             NoteInstance noteInstance = new NoteInstance();
-            noteInstance.targetRegister = NoteRegisters.current.registers[index];
+            noteInstance.targetRegister = NoteRegister.current.registers[index];
             noteInstance.noteData = noteDatas[i];
             noteInstances.Add(noteInstance);
         }

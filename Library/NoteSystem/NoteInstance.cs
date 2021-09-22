@@ -4,7 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class NoteInstance : IComparable
 {
-    public NoteRegisters.Register targetRegister;
+    public NoteRegister.Register targetRegister;
 
     public GameObject instance
     {

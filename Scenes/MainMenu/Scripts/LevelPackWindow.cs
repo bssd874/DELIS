@@ -19,7 +19,7 @@ public class LevelPackWindow : MonoBehaviour
 
     public void Initialize()
     {
-        Title.text = levelPack.levelpackName;
+        Title.text = levelPack.packName;
         Difficulty.text = levelPack.difficulty;
 
         foreach (LevelData levelData in levelPack.levelDatas)

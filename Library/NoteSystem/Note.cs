@@ -32,3 +32,5 @@ public class Note : MonoBehaviour
         Destroy(gameObject);
     }
 }
+
+public enum NoteState {Perfect, Good, Bad, Miss};

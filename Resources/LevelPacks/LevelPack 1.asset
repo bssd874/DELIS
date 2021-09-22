@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb80da78515460147adf95f57568fd89, type: 3}
   m_Name: LevelPack 1
   m_EditorClassIdentifier: 
-  levelpackName: PERSONAL COLLECTION
+  packName: Personal Collection
   difficulty: F
   levelDatas:
   - {fileID: 11400000, guid: e6d7b125ba62f944dba26a93776beed3, type: 2}
   - {fileID: 11400000, guid: 5dbe66a055d9a9e428d34c4ce879798c, type: 2}
+  - {fileID: 11400000, guid: 4560416b36312e14dbb74bb3bd060686, type: 2}
+  - {fileID: 11400000, guid: 0bcab39d550cc384196a862e5fb03bf3, type: 2}
+  - {fileID: 11400000, guid: c63b7c567a3b955439ef9c7581dfc74c, type: 2}
+  - {fileID: 11400000, guid: 7b592f45983e03f4fb18aca439114053, type: 2}

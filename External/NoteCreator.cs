@@ -10,9 +10,15 @@ public class NoteCreator : MonoBehaviour
     public NoteMap noteMap;
     public int index;
     public AudioSource audioSource;
+    public LineRenderer lineRenderer;
     public List<NoteData> noteDatas;
 
     public RectTransform StartIndicator;
+
+    public int samples;
+    public int interval;
+    public float multiplyer;
+    public float distance;
 
     public Transform indicator;
     public float countdown;
@@ -34,7 +40,7 @@ public class NoteCreator : MonoBehaviour
 
         audioSource.clip = levelData.audioClip;
 
-        StartIndicator.LeanScaleY(0, countdown).setOnComplete(()=> { audioSource.Play(); });
+        StartIndicator.LeanScaleY(0, countdown).setOnComplete(()=> { audioSource.Play();});
     }
 
     private void Update()
@@ -51,6 +57,7 @@ public class NoteCreator : MonoBehaviour
                 RegisterNotes(Camera.main.ScreenToViewportPoint(touch.position));
             }
         }
+
     }
 
     public void RegisterNotes(Vector2 viewportPosition)
