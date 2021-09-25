@@ -72,7 +72,7 @@ public class GameplayScript : MonoBehaviour
 
     void ChangeScene()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("LevelSelector");
+        LoadingScreenScript.LoadingScreen(() => UnityEngine.SceneManagement.SceneManager.LoadScene("LevelSelector"), 1);
     }
 
     void UpdateInfo()

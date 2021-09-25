@@ -27,11 +27,13 @@ public class LoadingScreenScript : MonoBehaviour
 
     public void Begin()
     {
-        LeanTween.alphaCanvas(canvasGroup, 1, 0.25f).setEaseOutSine().setOnComplete(()=>
+        LeanTween.alphaCanvas(canvasGroup, 1, 0.25f).setEaseOutExpo().setOnComplete(()=>
         {gameObject.LeanCancel();
         Top.fillOrigin = 0;
         Bottom.fillOrigin = 1;
-        gameObject.LeanValue(UpdateFill, 0, 1, duration / 2 ).setEaseInSine().setOnComplete(Process);});
+        gameObject.LeanValue(UpdateFill, 0, 1, duration * 0.4f ).setEaseInOutCirc().setIgnoreTimeScale(true);
+        LeanTween.delayedCall(duration / 2, Process).setIgnoreTimeScale(true);
+        }).setIgnoreTimeScale(true);
         
     }
 
@@ -53,8 +55,17 @@ public class LoadingScreenScript : MonoBehaviour
         gameObject.LeanCancel();
         Top.fillOrigin = 1;
         Bottom.fillOrigin = 0;
-        gameObject.LeanValue(UpdateFill, 1, 0, duration / 2 ).setEaseOutSine().setOnComplete(() =>  LeanTween.alphaCanvas(canvasGroup, 0, 0.25f).setEaseOutSine().setOnComplete(()=>Destroy(gameObject)));
+        gameObject.LeanValue(UpdateFill, 1, 0, duration * 0.4f ).setDelay(duration *  0.6f).setEaseInOutCirc().setOnComplete(() =>  
+        LeanTween.alphaCanvas(canvasGroup, 0, 0.25f).setEaseOutExpo().setOnComplete(()=>
+        Destroy(gameObject)).setIgnoreTimeScale(true)).setIgnoreTimeScale(true);
         
+    }
+
+    public static void LoadingScreen(UnityAction action, float duration = 0)
+    {
+        GameObject screen = GameObject.Instantiate(AssetsLoader.main.LoadingScreen);
+        screen.GetComponent<LoadingScreenScript>().Initialize(duration, action);
+        DontDestroyOnLoad(screen);
     }
 
 }

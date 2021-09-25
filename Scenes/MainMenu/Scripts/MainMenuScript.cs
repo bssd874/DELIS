@@ -16,7 +16,7 @@ public class MainMenuScript : MonoBehaviour
     public void SelectLevelPack(LevelPack selectedlevelPack)
     {
         levelPack = selectedlevelPack;
-        LoadingScreenManager.main.LoadingScreen(1, Select);
+        LoadingScreenScript.LoadingScreen(Select, 1);
     }
 
     public void Select()

@@ -539,9 +539,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficultyIndex: 0
-  levelData: {fileID: 11400000, guid: 0a68d11113ed0c6448bac276d313fc97, type: 2}
+  levelData: {fileID: 11400000, guid: 989382055085d604c9c3e850659fbee1, type: 2}
   noteMap:
-    code: A
+    code: A0
     notePacks:
     - comboEnabled: 1
       index: 0

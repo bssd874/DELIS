@@ -13,12 +13,14 @@ public class LevelSelectorNavigationModule : MonoBehaviour
 
     public void Back()
     {
-        SceneManager.LoadScene("MainMenu");
+        LoadingScreenScript.LoadingScreen(()=>SceneManager.LoadScene("MainMenu"), 1);
+        
     }
 
     public void Play()
     {
-        SceneManager.LoadScene("Gameplay");
+        LoadingScreenScript.LoadingScreen(()=>SceneManager.LoadScene("Gameplay"), 1);
+        
     }
 
 }

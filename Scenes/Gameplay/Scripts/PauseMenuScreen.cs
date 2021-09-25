@@ -34,6 +34,6 @@ public class PauseMenuScreen : MonoBehaviour
     public void Back()
     {
         GameplayState.main.UnPause();
-        UnityEngine.SceneManagement.SceneManager.LoadScene("LevelSelector");
+        LoadingScreenScript.LoadingScreen(() => UnityEngine.SceneManagement.SceneManager.LoadScene("LevelSelector"), 1);
     }
 }
