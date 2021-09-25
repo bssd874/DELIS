@@ -3,7 +3,7 @@ using System.Collections.Generic;
 [System.Serializable]
 public class NotePack
 {
-    public bool comboEnabled;
+    public bool comboEnabled = true;
     public int index;
     public NoteData[] noteDatas;
     [System.NonSerialized] public List<NoteInstance> noteInstances = new List<NoteInstance>();

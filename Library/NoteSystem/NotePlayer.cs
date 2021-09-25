@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class NotePlayer : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class NotePlayer : MonoBehaviour
     public NoteInstance[] noteInstances;
     public int spawnIndex = 0;
     public int hitIndex = 0;
+
+    public UnityEvent onActivate = new UnityEvent();
 
     public Coroutine SpawnerCoroutine;
     public Coroutine HitCorountine;
@@ -22,6 +25,7 @@ public class NotePlayer : MonoBehaviour
     {
         SpawnerCoroutine = StartCoroutine(Spawner());
         HitCorountine = StartCoroutine(HitNotesIndex());
+        onActivate.Invoke();
     }
 
     private IEnumerator Spawner()
@@ -61,6 +65,8 @@ public class NotePlayer : MonoBehaviour
     {
         
         GameObject obj = Instantiate(noteInstance.instance, noteInstance.noteData.worldPosition, Quaternion.identity, transform);
-        GameplayData.Data.ApplyCombo();
     }
+
+    
+
 }

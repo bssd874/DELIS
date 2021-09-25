@@ -64,6 +64,12 @@ public class LevelData : ScriptableObject
             noteMap.levelResult = NoteMap.Load(levelName, noteMap.code);
         }
     }
+
+    public void SaveNoteMap(NoteMap noteMap)
+    {
+        noteMap.Save(levelName);
+    }
+
     public void SaveAllData()
     {
         foreach(NoteMap noteMap in noteMaps)
@@ -72,7 +78,7 @@ public class LevelData : ScriptableObject
         }
     }
 
-    public NoteMap GetNoteMap(int index)
+    public NoteMap GetNoteMapIndex(int index)
     {
         return noteMaps[Mathf.Clamp(index, 0, noteMaps.Length)];
     }

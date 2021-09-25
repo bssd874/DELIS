@@ -66,7 +66,7 @@ public static class GameplayData
             {
                 get
                 {
-                    return (perfect * 100) + (good * 70) + (bad * 30);
+                    return ((perfect * 100) + (good * 70) + (bad * 30)) / 2;
                 }
             }
 
@@ -95,6 +95,7 @@ public static class GameplayData
                 break;
                 //=========================
                 case NoteState.Miss:
+                    combo = 0;
                     comboAmount = 0;
                     scoreAmount = 0;
                     StateEvaluation.miss += 1;

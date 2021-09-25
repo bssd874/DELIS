@@ -33,4 +33,4 @@ public class Note : MonoBehaviour
     }
 }
 
-public enum NoteState {Perfect, Good, Bad, Miss};
+[System.Serializable] public enum NoteState {Perfect = 3, Good = 2, Bad = 1, Miss = 0};

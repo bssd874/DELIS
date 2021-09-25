@@ -46,7 +46,7 @@ public class CountdownScreen : MonoBehaviour
         while (countdown > 0)
         {
             countdown -= Time.unscaledDeltaTime;
-            textCount.text = string.Format("{0:0.00}", Mathf.Clamp(countdown, 0, Mathf.Infinity)); ;
+            textCount.text = string.Format("{0:0.00}", Mathf.Clamp(countdown, 0, Mathf.Infinity));
             yield return null;
         }
         Finish();
