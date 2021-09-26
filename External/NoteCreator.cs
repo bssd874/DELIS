@@ -137,7 +137,8 @@ public class NoteCreator : MonoBehaviour
         Directory.CreateDirectory(Application.dataPath + "/Resources/Levels/" + levelData.levelName + "/NoteMaps/");
         File.WriteAllText(Application.dataPath + "/Resources/Levels/" + levelData.levelName + "/NoteMaps/" + difficultyIndex +".json", json);
 
+        print("Saved to " + Application.persistentDataPath + "/Resources/Levels/" + levelData.levelName + "/NoteMaps/" + difficultyIndex +".json");
         Directory.CreateDirectory(Application.persistentDataPath + "/Resources/Levels/" + levelData.levelName + "/NoteMaps/");
-        File.WriteAllText(Application.dataPath + "/Resources/Levels/" + levelData.levelName + "/NoteMaps/" + difficultyIndex +".json", json);
+        File.WriteAllText(Application.persistentDataPath + "/Resources/Levels/" + levelData.levelName + "/NoteMaps/" + difficultyIndex +".json", json);
     }
 }
