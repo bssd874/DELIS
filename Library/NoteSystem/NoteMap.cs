@@ -5,7 +5,22 @@ using UnityEngine;
 [System.Serializable]
 public class NoteMap
 {
-    public string code;
+    public string code = "";
+    public string _code
+    {
+        set
+        {
+            code = value;
+        }
+        get
+        {
+            if (code == "")
+            {
+                code = Random.Range(0, 1000000).ToString();
+            }
+            return code;
+        }
+    }
     public LevelResult levelResult;
     public LevelResult _levelResult
     {
@@ -54,7 +69,6 @@ public class NoteMap
 
     public void Save(string name)
     {
-        if (code == "") code = Random.value.ToString();
         string filePath = GetFilePath(name, code);
         File.WriteAllText(
             filePath, 

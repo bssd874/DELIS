@@ -472,6 +472,7 @@ MonoBehaviour:
   KKSI: {fileID: 916549157}
   SMK: {fileID: 752481936}
   TitleScreen: {fileID: 403399373}
+  introSound: {fileID: 8300000, guid: ba8345256a8dc714dad742522c8a3ede, type: 3}
 --- !u!114 &755313301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,6 +486,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LoadingScreen: {fileID: 2008233161545611076, guid: c176e779f45d6f740af37d9f872da407, type: 3}
+  noteRegister:
+    registers:
+    - gameObject: {fileID: 3097137311107281801, guid: 68a7cadb4c2a6c2459daae859c35d8e5, type: 3}
+      offset: -2
 --- !u!1 &916549153
 GameObject:
   m_ObjectHideFlags: 0
