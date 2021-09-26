@@ -14,6 +14,7 @@ public class NotePlayer : MonoBehaviour
     public Coroutine SpawnerCoroutine;
     public Coroutine HitCorountine;
 
+
     public void Play(AudioClip audioClip, NoteMap noteMap)
     {
         audioSource.clip = audioClip;
@@ -40,6 +41,7 @@ public class NotePlayer : MonoBehaviour
         {
             NoteInstance noteInstance = noteInstances[i];
             while (noteInstance.spawnTime > audioSource.time) yield return null;
+            
             SpawnNoteInstance(noteInstance);
             spawnIndex = i;
         }
