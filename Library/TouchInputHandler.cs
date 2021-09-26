@@ -5,7 +5,6 @@ public class TouchInputHandler : MonoBehaviour
     public void Update()
     {
         DeployTouches();
-        MouseInput();
     }
 
     public void MouseInput()
@@ -27,7 +26,7 @@ public class TouchInputHandler : MonoBehaviour
         }
     }
 
-    public void DeployRay(Vector2 pos)
+    public static void DeployRay(Vector2 pos)
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(pos), Vector2.zero);
         if (hit)
