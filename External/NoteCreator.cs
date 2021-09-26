@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class NoteCreator : MonoBehaviour
 {
+    public bool menu;
     public int difficultyIndex = 0;
     public LevelData levelData;
 
-    public NoteMap noteMap;
+    public NoteMap noteMap = new NoteMap();
     public int index = 0;
     public AudioSource audioSource;
     public LineRenderer lineRenderer;
-    public List<NoteData> noteDatas;
+    public List<NoteData> noteDatas = new List<NoteData>();
 
     public RectTransform StartIndicator;
 
@@ -19,18 +20,20 @@ public class NoteCreator : MonoBehaviour
     public float countdown;
 
     public NotePlayer notePlayer;
+    public TMPro.TMP_Text debug;
 
 
 
-    string di = "";
-    string i = "";
+    string di = "0";
+    string i = "0";
 
-    string size = "";
+    string size = "1";
     string code = "";
 
     private void OnGUI()
     {
-        if (Screen.orientation != ScreenOrientation.Portrait) return;        
+        menu = GUILayout.Toggle(menu, "Menu");
+        if (!menu) return;        
 
         if (GUILayout.Button("Reset All"))
         {
@@ -42,7 +45,11 @@ public class NoteCreator : MonoBehaviour
         }
         if (GUILayout.Button("ResetAudio"))
         {
-            audioSource.Play();
+            audioSource.Stop();
+
+            audioSource.clip = levelData.audioClip;
+            StartIndicator.LeanScaleY(1, 0);
+            StartIndicator.LeanScaleY(0, countdown).setOnComplete(()=> { audioSource.Play();});
         }
         
         GUILayout.Label("Difficulty Index");
@@ -94,7 +101,7 @@ public class NoteCreator : MonoBehaviour
 
     private void Update()
     {
-        if (Screen.orientation != ScreenOrientation.Landscape) return;
+        if (menu || Screen.orientation != ScreenOrientation.Portrait) return;
         if (Input.GetKeyDown(KeyCode.A))
         {
             RegisterNotes(Camera.main.ScreenToViewportPoint(Input.mousePosition));
@@ -121,11 +128,13 @@ public class NoteCreator : MonoBehaviour
         noteData.time = audioSource.time;
 
         noteDatas.Add(noteData);
+        debug.text = debug.text = noteData.ToString() + "   " + noteDatas.Count.ToString();
     }
 
     public void InsertNoteDataIntoLayer()
     {
-        List<NotePack> packs = new List<NotePack>(noteMap.notePacks);
+        debug.text = noteDatas.Count.ToString();
+        noteMap.notePacks[index] = new NotePack();
         noteMap.notePacks[index].noteDatas = noteDatas.ToArray();
     }
 
@@ -133,6 +142,7 @@ public class NoteCreator : MonoBehaviour
     {
         string tempCode = noteMap._code;
         string json = JsonUtility.ToJson(noteMap);
+        
         print("Saved to " + Application.dataPath + "/Resources/Levels/" + levelData.levelName + "/NoteMaps/" + difficultyIndex +".json");
         Directory.CreateDirectory(Application.dataPath + "/Resources/Levels/" + levelData.levelName + "/NoteMaps/");
         File.WriteAllText(Application.dataPath + "/Resources/Levels/" + levelData.levelName + "/NoteMaps/" + difficultyIndex +".json", json);
@@ -140,5 +150,6 @@ public class NoteCreator : MonoBehaviour
         print("Saved to " + Application.persistentDataPath + "/Resources/Levels/" + levelData.levelName + "/NoteMaps/" + difficultyIndex +".json");
         Directory.CreateDirectory(Application.persistentDataPath + "/Resources/Levels/" + levelData.levelName + "/NoteMaps/");
         File.WriteAllText(Application.persistentDataPath + "/Resources/Levels/" + levelData.levelName + "/NoteMaps/" + difficultyIndex +".json", json);
+        debug.text = json;
     }
 }
