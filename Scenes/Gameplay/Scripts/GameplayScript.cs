@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameplayScript : MonoBehaviour
 {
-    public bool autoplay;
+
     public static LevelData _levelData
     {
         get
@@ -30,7 +30,6 @@ public class GameplayScript : MonoBehaviour
     }
 
     public NotePlayer notePlayer;
-    public TrailRenderer trailRenderer;
 
     public TMPro.TMP_Text combo;
     public TMPro.TMP_Text score;
@@ -65,15 +64,10 @@ public class GameplayScript : MonoBehaviour
 
     void Hit()
     {
-        Top.LeanCancel();
-        Bottom.LeanCancel();
-        TouchInputHandler.DeployRay(analyzer.GetNoteDataOffset(0).worldPosition);
         Top.LeanScaleY(0, 0);
         Bottom.LeanScaleY(0, 0);
-        
         Top.LeanScaleY(1, analyzer.GetNoteDataOffset(1).time - analyzer.GetNoteDataOffset(0).time);
         Bottom.LeanScaleY(1, analyzer.GetNoteDataOffset(1).time - analyzer.GetNoteDataOffset(0).time);
-        trailRenderer.gameObject.LeanMove((Vector3)analyzer.GetNoteDataOffset(1).worldPosition + Vector3.forward * 10, analyzer.GetNoteDataOffset(1).time - analyzer.GetNoteDataOffset(0).time);
         Debug.DrawLine(analyzer.noteData.worldPosition, analyzer.GetNoteDataOffset(1).worldPosition, Color.green, analyzer.GetNoteDataOffset(1).time - analyzer.GetNoteDataOffset(0).time);
     }
 
