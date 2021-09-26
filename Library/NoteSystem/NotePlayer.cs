@@ -14,7 +14,6 @@ public class NotePlayer : MonoBehaviour
     public Coroutine SpawnerCoroutine;
     public Coroutine HitCorountine;
 
-
     public void Play(AudioClip audioClip, NoteMap noteMap)
     {
         audioSource.clip = audioClip;

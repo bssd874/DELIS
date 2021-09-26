@@ -19,7 +19,7 @@ public class LevelSelectorNavigationModule : MonoBehaviour
 
     public void Play()
     {
-        LoadingScreenScript.LoadingScreen(()=>SceneManager.LoadScene("NoteCreator"), 1);
+        LoadingScreenScript.LoadingScreen(()=>SceneManager.LoadScene("Gameplay"), 1);
         
     }
 

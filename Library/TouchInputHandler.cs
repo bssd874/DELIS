@@ -5,15 +5,6 @@ public class TouchInputHandler : MonoBehaviour
     public void Update()
     {
         DeployTouches();
-        MouseInput();
-    }
-
-    public void MouseInput()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            DeployRay(Input.mousePosition);
-        }
     }
 
     public void DeployTouches()
@@ -22,22 +13,16 @@ public class TouchInputHandler : MonoBehaviour
         {
             if (touch.phase == TouchPhase.Began)
             {
-                DeployRay(touch.position);
+                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(touch.position), Vector2.zero);
+                if (hit)
+                {
+                    Note note = hit.collider.GetComponent<Note>();
+                    if (note)
+                    {
+                        note.HitNote();
+                    }
+                }
             }
         }
     }
-
-    public void DeployRay(Vector2 pos)
-    {
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(pos), Vector2.zero);
-        if (hit)
-        {
-            Note note = hit.collider.GetComponent<Note>();
-            if (note)
-            {
-                note.HitNote();
-            }
-        }
-    }
-
 }

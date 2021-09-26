@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameplayScript : MonoBehaviour
 {
@@ -30,14 +29,12 @@ public class GameplayScript : MonoBehaviour
     }
 
     public NotePlayer notePlayer;
+    public NoteRegister noteRegister;
 
     public TMPro.TMP_Text combo;
     public TMPro.TMP_Text score;
 
     public static GameplayScript main;
-
-    public RectTransform Top;
-    public RectTransform Bottom;
 
     NoteAnalyzer analyzer;
 
@@ -46,11 +43,11 @@ public class GameplayScript : MonoBehaviour
         main = this;
     }
 
+    
+
     void Start()
     {
-
-        GameplayData.Data.combo = 0;
-        GameplayData.Data.score = 0;
+        noteRegister.Select();
 
         analyzer = new NoteAnalyzer(notePlayer);
         analyzer.onUpdate.AddListener(Hit);
@@ -64,10 +61,6 @@ public class GameplayScript : MonoBehaviour
 
     void Hit()
     {
-        Top.LeanScaleY(0, 0);
-        Bottom.LeanScaleY(0, 0);
-        Top.LeanScaleY(1, analyzer.GetNoteDataOffset(1).time - analyzer.GetNoteDataOffset(0).time);
-        Bottom.LeanScaleY(1, analyzer.GetNoteDataOffset(1).time - analyzer.GetNoteDataOffset(0).time);
         Debug.DrawLine(analyzer.noteData.worldPosition, analyzer.GetNoteDataOffset(1).worldPosition, Color.green, analyzer.GetNoteDataOffset(1).time - analyzer.GetNoteDataOffset(0).time);
     }
 
@@ -84,15 +77,6 @@ public class GameplayScript : MonoBehaviour
 
     void UpdateInfo()
     {
-        combo.gameObject.LeanCancel();
-        score.gameObject.LeanCancel();
-        combo.transform.localScale = Vector3.one;
-        combo.gameObject.LeanScale(Vector3.one * 1.5f, 0.5f).setEasePunch();
-
-        score.transform.localScale = Vector3.one;
-        
-        score.gameObject.LeanScaleY(2f, 0.5f).setEasePunch();
-
         combo.text = GameplayData.Data.combo.ToString();
         score.text = string.Format("{0:000000}", GameplayData.Data._score);
     }

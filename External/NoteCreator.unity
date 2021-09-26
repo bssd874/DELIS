@@ -539,18 +539,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficultyIndex: 0
-  levelData: {fileID: 0}
+  levelData: {fileID: 11400000, guid: 989382055085d604c9c3e850659fbee1, type: 2}
   noteMap:
-    code: 
-    notePacks: []
+    code: A0
+    notePacks:
+    - comboEnabled: 1
+      index: 0
+      noteDatas: []
   index: 0
   audioSource: {fileID: 1542250459}
   lineRenderer: {fileID: 0}
   noteDatas: []
   StartIndicator: {fileID: 1374936786}
+  samples: 16000
+  interval: 0
+  multiplyer: 15
+  distance: 0.01
   indicator: {fileID: 1991190612}
   countdown: 3
-  notePlayer: {fileID: 0}
 --- !u!82 &1542250459
 AudioSource:
   m_ObjectHideFlags: 0

@@ -7,7 +7,6 @@ public class SplashScreenScript : MonoBehaviour
     public CanvasGroup KKSI;
     public CanvasGroup SMK;
     public CanvasGroup TitleScreen;
-    public AudioClip introSound;
 
     
     public void Start()
@@ -20,7 +19,6 @@ public class SplashScreenScript : MonoBehaviour
         TitleScreen.interactable =false;
         LTSeq sequence = LeanTween.sequence();
         sequence.append(2);
-        sequence.append(()=>AudioSource.PlayClipAtPoint(introSound, Vector3.one));
         sequence.append(KKSI.LeanAlpha(1, 0.5f).setEaseInSine());
         sequence.append(1);
         sequence.append(KKSI.LeanAlpha(0, 0.5f).setEaseInSine());
