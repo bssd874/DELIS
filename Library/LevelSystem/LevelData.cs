@@ -44,40 +44,42 @@ public class LevelData : ScriptableObject
 
     public void LoadNoteMaps()
     {
-        string[] noteMapPaths;
-        string[] noteMapJsons;
-        NoteMap[] noteMapsObjects;
 
+        NoteMap[] loadedNoteMaps;
+
+        TextAsset[] noteMapApplicationTextAsset = Resources.LoadAll<TextAsset>("Levels/" + levelName + "/NoteMaps");
+        string[] noteMapApplicationJsons = new string[noteMapApplicationTextAsset.Length];
+        NoteMap[] noteMapApplicationObjects = new NoteMap[noteMapApplicationJsons.Length];
         
-
-        string applicationPath = Application.dataPath + "/Resources/Levels/" + levelName + "/NoteMaps";
-        string globalPath = Application.persistentDataPath + "/Resources/Levels/" + levelName + "/NoteMaps";
-
-        if(!Directory.Exists(applicationPath)) Directory.CreateDirectory(applicationPath);
-        if(!Directory.Exists(globalPath)) Directory.CreateDirectory(globalPath);
-        
-        string[] noteMapApplicationPath = Directory.GetFiles(applicationPath, "*.json");
-        string[] noteMapGlobalPath = Directory.GetFiles(globalPath, "*.json");        
-
-        noteMapPaths = noteMapApplicationPath.Union<string>(noteMapGlobalPath).ToArray();
-
-        noteMapJsons = new string[noteMapPaths.Length];
-        noteMapsObjects = new NoteMap[noteMapJsons.Length];
-
-        Debug.Log(noteMapGlobalPath.Length);
-
-        for (int i = 0; i < noteMapPaths.Length; i++) 
+        for (int i = 0; i < noteMapApplicationJsons.Length; i++) 
         {
-            Debug.Log(noteMapPaths[i]);
+            string noteMapJson = noteMapApplicationTextAsset[i].text;
 
-            string noteMapJson = File.ReadAllText(noteMapPaths[i]);
+            noteMapApplicationJsons[i] = noteMapJson;
 
-            noteMapsObjects[i] = JsonUtility.FromJson<NoteMap>(noteMapJson);
-
-            noteMapJsons[i] = noteMapJson;
+            noteMapApplicationObjects[i] = JsonUtility.FromJson<NoteMap>(noteMapJson);
         }
 
-        noteMaps = noteMapsObjects;
+        string externalPath = Application.persistentDataPath + "/Resources/Levels/" + levelName + "/NoteMaps";
+        if(!Directory.Exists(externalPath)) Directory.CreateDirectory(externalPath);
+
+        string[] noteMapExternalPaths = Directory.GetFiles(externalPath, "*.json");
+        string[] noteMapExternalJsons = new string[noteMapExternalPaths.Length];
+        NoteMap[] noteMapExternalObjects = new NoteMap[noteMapExternalPaths.Length];
+
+        for (int i = 0; i < noteMapExternalJsons.Length; i++) 
+        {
+            string noteMapJson = File.ReadAllText(noteMapExternalPaths[i]);
+
+            noteMapExternalJsons[i] = noteMapJson;
+
+            noteMapExternalObjects[i] = JsonUtility.FromJson<NoteMap>(noteMapJson);
+        }
+
+        loadedNoteMaps = noteMapApplicationObjects.Concat<NoteMap>(noteMapExternalObjects).ToArray();
+
+        noteMaps = loadedNoteMaps;
+
     }
 
     public void LoadAllData()

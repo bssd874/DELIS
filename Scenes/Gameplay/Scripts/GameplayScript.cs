@@ -71,8 +71,8 @@ public class GameplayScript : MonoBehaviour
         Top.LeanScaleY(1, 0);
         Bottom.LeanScaleY(1, 0);
         
-        Top.LeanScaleY(1.1f, 0.5f).setEasePunch();
-        Bottom.LeanScaleY(1.1f, 0.5f).setEasePunch();
+        Top.LeanScaleY(1.25f, 0.4f).setEasePunch();
+        Bottom.LeanScaleY(1.25f, 0.4f).setEasePunch();
 
         LeanTween.value(Camera.main.gameObject, (Color c) => Camera.main.backgroundColor = c, Camera.main.backgroundColor, Random.ColorHSV(), analyzer.GetNoteDataOffset(1).time - analyzer.GetNoteDataOffset(0).time).setEaseInOutExpo();
 
