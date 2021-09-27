@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Linq;
+using System.IO;
 
 [CreateAssetMenu(fileName = "LevelData", menuName = "Level/LevelData")]
 public class LevelData : ScriptableObject
@@ -42,19 +44,40 @@ public class LevelData : ScriptableObject
 
     public void LoadNoteMaps()
     {
-        TextAsset[] textAssets = Resources.LoadAll<TextAsset>("Levels/" + levelName + "/NoteMaps/");
+        string[] noteMapPaths;
+        string[] noteMapJsons;
+        NoteMap[] noteMapsObjects;
 
-        Debug.Log("Levels/" + levelName + "/NoteMaps/");
+        
 
-        noteMaps = new NoteMap[textAssets.Length];
+        string applicationPath = Application.dataPath + "/Resources/Levels/" + levelName + "/NoteMaps";
+        string globalPath = Application.persistentDataPath + "/Resources/Levels/" + levelName + "/NoteMaps";
 
-        for (int i = 0; i < textAssets.Length; i++)
+        if(!Directory.Exists(applicationPath)) Directory.CreateDirectory(applicationPath);
+        if(!Directory.Exists(globalPath)) Directory.CreateDirectory(globalPath);
+        
+        string[] noteMapApplicationPath = Directory.GetFiles(applicationPath, "*.json");
+        string[] noteMapGlobalPath = Directory.GetFiles(globalPath, "*.json");        
+
+        noteMapPaths = noteMapApplicationPath.Union<string>(noteMapGlobalPath).ToArray();
+
+        noteMapJsons = new string[noteMapPaths.Length];
+        noteMapsObjects = new NoteMap[noteMapJsons.Length];
+
+        Debug.Log(noteMapGlobalPath.Length);
+
+        for (int i = 0; i < noteMapPaths.Length; i++) 
         {
+            Debug.Log(noteMapPaths[i]);
 
-            string json = textAssets[i].text;
+            string noteMapJson = File.ReadAllText(noteMapPaths[i]);
 
-            noteMaps[i] = JsonUtility.FromJson<NoteMap>(json);
+            noteMapsObjects[i] = JsonUtility.FromJson<NoteMap>(noteMapJson);
+
+            noteMapJsons[i] = noteMapJson;
         }
+
+        noteMaps = noteMapsObjects;
     }
 
     public void LoadAllData()

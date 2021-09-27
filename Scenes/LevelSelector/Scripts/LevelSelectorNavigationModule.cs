@@ -19,6 +19,7 @@ public class LevelSelectorNavigationModule : MonoBehaviour
 
     public void Play()
     {
+        if(LevelSelectorScript._levelData.noteMaps.Length == 0) return;
         LoadingScreenScript.LoadingScreen(()=>SceneManager.LoadScene("Gameplay"), 1);
         
     }

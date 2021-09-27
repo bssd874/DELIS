@@ -68,11 +68,14 @@ public class GameplayScript : MonoBehaviour
         Top.LeanCancel();
         Bottom.LeanCancel();
         TouchInputHandler.DeployRay(analyzer.GetNoteDataOffset(0).worldPosition);
-        Top.LeanScaleY(0, 0);
-        Bottom.LeanScaleY(0, 0);
+        Top.LeanScaleY(1, 0);
+        Bottom.LeanScaleY(1, 0);
         
-        Top.LeanScaleY(1, analyzer.GetNoteDataOffset(1).time - analyzer.GetNoteDataOffset(0).time);
-        Bottom.LeanScaleY(1, analyzer.GetNoteDataOffset(1).time - analyzer.GetNoteDataOffset(0).time);
+        Top.LeanScaleY(1.1f, 0.5f).setEasePunch();
+        Bottom.LeanScaleY(1.1f, 0.5f).setEasePunch();
+
+        LeanTween.value(Camera.main.gameObject, (Color c) => Camera.main.backgroundColor = c, Camera.main.backgroundColor, Random.ColorHSV(), analyzer.GetNoteDataOffset(1).time - analyzer.GetNoteDataOffset(0).time).setEaseInOutExpo();
+
         trailRenderer.gameObject.LeanMove((Vector3)analyzer.GetNoteDataOffset(1).worldPosition + Vector3.forward * 10, analyzer.GetNoteDataOffset(1).time - analyzer.GetNoteDataOffset(0).time);
         Debug.DrawLine(analyzer.noteData.worldPosition, analyzer.GetNoteDataOffset(1).worldPosition, Color.green, analyzer.GetNoteDataOffset(1).time - analyzer.GetNoteDataOffset(0).time);
     }
