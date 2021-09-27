@@ -73,9 +73,6 @@ public class Normal : MonoBehaviour
 
     public void End()
     {
-        AddCombo();
-        Explode();
-        return;
         Front.LeanScale(Vector3.one * 2, 0);
         Front.LeanScale(Vector3.one, 0.1f);
         Indicator2.LeanScale(Vector3.one * 2.75f, 0.2f).setEaseOutBack();
