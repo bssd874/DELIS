@@ -63,7 +63,7 @@ public class LoadingScreenScript : MonoBehaviour
 
     public static void LoadingScreen(UnityAction action, float duration = 0)
     {
-        GameObject screen = GameObject.Instantiate(AssetsLoader.main.LoadingScreen);
+        GameObject screen = GameObject.Instantiate(AssetsLoader.main.screenObjects.LoadingScreen);
         screen.GetComponent<LoadingScreenScript>().Initialize(duration, action);
         DontDestroyOnLoad(screen);
     }

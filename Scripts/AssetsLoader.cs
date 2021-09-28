@@ -6,8 +6,11 @@ public class AssetsLoader : MonoBehaviour
 {
     public static AssetsLoader main;
 
-    public GameObject LoadingScreen;
-    public NoteRegister noteRegister;
+    public SoundEffects soundEffects;
+    public ScreenObjects screenObjects;
+
+    public MainAssets mainAssets;
+    
 
     public void Awake()
     {
@@ -17,7 +20,26 @@ public class AssetsLoader : MonoBehaviour
 
     public void Start()
     {
-        noteRegister.Select();
+        mainAssets.noteRegister.Select();
+    }
+
+
+    [System.Serializable]
+    public class SoundEffects
+    {
+        public AudioClip introSound;
+    }
+
+    [System.Serializable]
+    public class ScreenObjects
+    {
+        public GameObject LoadingScreen;
+    }
+
+    [System.Serializable]
+    public class MainAssets
+    {
+        public NoteRegister noteRegister;
     }
 
 }

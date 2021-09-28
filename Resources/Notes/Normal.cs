@@ -23,13 +23,14 @@ public class Normal : MonoBehaviour
     {
         Back.LeanScale(Vector3.one * 1.2f, 0.75f * TimeScale).setEaseOutBack();
         Front.LeanScale(Vector3.one * 1f, 1f * TimeScale).setEaseOutElastic();
-        Indicator1.LeanScale(Vector3.one * 1.4f, 1f * TimeScale).setEaseInOutCirc().setDelay(1);
+        Indicator1.LeanScale(Vector3.one * 0.75f, 0.5f * TimeScale).setEaseOutCirc().setDelay(0.75f);
+        Indicator1.LeanScale(Vector3.one * 1.75f, 0.4f * TimeScale).setEaseOutCirc().setDelay(1.6f);
         Indicator1.LeanColor(Color.yellow, 0.75f).setEaseInOutSine().setDelay(1f);
         Indicator1.LeanColor(Color.green, 0.25f).setEaseInOutSine().setDelay(1.75f);
-        Back.LeanScale(Vector3.one * 1.5f, 0.5f * TimeScale).setEaseOutBack().setDelay(1.5f);
-        Front.LeanScale(Vector3.one * 1.25f, 0.5f * TimeScale).setEaseOutBack().setDelay(1.5f);
+        Back.LeanScale(Vector3.one * 2f, 0.2f * TimeScale).setEaseOutBack().setDelay(1.5f);
+        Front.LeanScale(Vector3.one * 1.75f, 0.2f * TimeScale).setEaseOutBack().setDelay(1.5f);
 
-        Indicator2.LeanScale(Vector3.one * 2.75f, 0.15f).setEaseOutCirc().setDelay(1.65f);
+        Indicator2.LeanScale(Vector3.one * 4f, 0.15f).setEaseOutCirc().setDelay(1.65f);
         Indicator2.LeanScale(Vector3.one * 1.25f, 0.2f).setEaseInSine().setDelay(1.8f);
 
         Indicator1.LeanColor(Color.white, 0).setEaseInSine().setDelay(1.95f);

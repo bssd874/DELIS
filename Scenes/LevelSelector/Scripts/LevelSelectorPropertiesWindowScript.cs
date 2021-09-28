@@ -38,8 +38,6 @@ public class LevelSelectorPropertiesWindowScript : MonoBehaviour
 
     public void UpdateInfo()
     {
-        Debug.Log(LevelSelectorScript._levelPack);
-        Debug.Log(LevelSelectorScript._levelData.levelName);
         references.Title.text = LevelSelectorScript._levelData.levelName;
         references.combo.text = _levelResult.highCombo.ToString();
         references.score.text = _levelResult.highScore.ToString();

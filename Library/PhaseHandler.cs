@@ -12,6 +12,10 @@ public class PhaseHandler : MonoBehaviour
 
     public void Start()
     {
+        foreach (PhaseContainer phaseContainer in phaseContainers)
+        {
+            Array.Sort(phaseContainer.notePhases.ToArray());
+        }
         if (defaultIndex >= 0)
         {
             ActivatePhaseIndex(defaultIndex);
@@ -55,14 +59,6 @@ public class PhaseHandler : MonoBehaviour
         clearPhaseIndex(index);
     }
 
-    public void Awake()
-    {
-        foreach (PhaseContainer phaseContainer in phaseContainers)
-        {
-            Array.Sort(phaseContainer.notePhases.ToArray());
-        }
-    }
-
     public IEnumerator StartPhase(PhaseContainer phaseContainer)
     {
         NotePhase[] notePhases = phaseContainer.notePhases.ToArray();
@@ -102,6 +98,7 @@ public class PhaseHandler : MonoBehaviour
         {
             instanceObject = Instantiate(instance, transform.position, transform.rotation, transform);
         }
+
         if (0 <= lifetime)
         {
             PhaseManager.main.StartCoroutine(OptimizedDestroy(instanceObject, lifetime));

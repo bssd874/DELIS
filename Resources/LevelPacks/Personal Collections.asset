@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Personal Collections
   m_EditorClassIdentifier: 
   packName: Personal Collections
-  difficulty: F
+  levelPackInfo:
+    cost: 1000
   levelDatas:
   - {fileID: 11400000, guid: 889f710e6b72281498890269ad0d0586, type: 2}
   - {fileID: 11400000, guid: 4f98d43045d3899478eb182fdb048fed, type: 2}

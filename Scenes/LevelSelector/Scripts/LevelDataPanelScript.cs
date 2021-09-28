@@ -42,6 +42,7 @@ public class LevelDataPanelScript : MonoBehaviour
     {
         Focus();
         AnimateWindow();
+        if (levelData.noteMaps.Length == 0) return;
         LevelSelectorScript._levelData = levelData;
     }
 

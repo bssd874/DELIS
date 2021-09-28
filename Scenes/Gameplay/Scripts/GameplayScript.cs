@@ -82,13 +82,13 @@ public class GameplayScript : MonoBehaviour
 
     void End()
     {
-        _levelData.SaveNoteMap(_noteMap);
-        LeanTween.delayedCall(3, ChangeScene);
+        
+        LeanTween.delayedCall(6, ChangeScene);
     }
 
     void ChangeScene()
     {
-        LoadingScreenScript.LoadingScreen(() => UnityEngine.SceneManagement.SceneManager.LoadScene("LevelSelector"), 1);
+        LoadingScreenScript.LoadingScreen(() => {_levelData.SaveNoteMap(_noteMap); UnityEngine.SceneManagement.SceneManager.LoadScene("LevelSelector");}, 1);
     }
 
     void UpdateInfo()

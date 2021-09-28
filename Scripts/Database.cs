@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public static class Database
@@ -39,25 +40,60 @@ public static class Database
         }
     }
 
-    public static class UserData
+    public static class User
     {
-        public static float skills = 0;
-        public static float _skills
+        
+        public static Data data;
+        public static Data _data
         {
+            set
+            {
+                data = value;
+            }
             get
             {
-                float value = 0;
-                int total = 0;
-                foreach(LevelPack levelPack in GameData.levelpacks)
-                {
-                    value += levelPack.skills;
-                    total += 1;
-                }
-                skills = value/total;
-                return value / total;
+                if (data == null) data = Data.Load();
+                if (data == null) data = new Data();
+
+                Data.Save(data);
+
+                return data;
             }
         }
+        
+
+        public class Data
+        {
+            public int JPoints = 1000000;
+
+            public static void Save(Data data)
+            {
+                string filePath = GetFilePath();
+                File.WriteAllText(
+                    filePath, 
+                    JsonUtility.ToJson(data)
+                );
+                Debug.Log("User Data saved to : " + filePath);
+            }
+
+            public static Data Load()
+            {
+                string filePath = GetFilePath();
+                if (!File.Exists(filePath)) return new Data();
+                Debug.Log("User Data loaded from : " + filePath);
+                return JsonUtility.FromJson<Data>(
+                    File.ReadAllText(filePath)
+                );
+            }
+
+            public static string GetFilePath ()
+            {
+                string path = Application.persistentDataPath + "/SaveData/User/";
+                Directory.CreateDirectory(path);
+                string filePath = path + "Data" + ".json";
+                return filePath;
+            }
+        }
+
     }
-
-
 }

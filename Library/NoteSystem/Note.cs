@@ -14,7 +14,7 @@ public class Note : MonoBehaviour
     public void StartNote()
     {
         onStart.Invoke();
-        transform.position += new Vector3(0, 0, 1);
+        transform.position += new Vector3(0, 0, 100);
         transform.LeanMoveLocalZ(0, 2);
         phaseHandler.ActivatePhaseIndex(normalPhase);
     }

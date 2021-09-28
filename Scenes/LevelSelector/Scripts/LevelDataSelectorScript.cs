@@ -28,7 +28,6 @@ public class LevelDataSelectorScript : MonoBehaviour
         {
             Destroy(levelDataPanelScript.gameObject);
         }
-        Debug.Log(LevelSelectorScript.levelPack);
         levelDataPanelScripts = new LevelDataPanelScript[_LevelDatas.Length];
         for (int i = 0; i < _LevelDatas.Length; i++) 
         {
