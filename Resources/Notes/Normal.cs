@@ -30,10 +30,11 @@ public class Normal : MonoBehaviour
         Back.LeanScale(Vector3.one * 2f, 0.2f * TimeScale).setEaseOutBack().setDelay(1.5f);
         Front.LeanScale(Vector3.one * 1.75f, 0.2f * TimeScale).setEaseOutBack().setDelay(1.5f);
 
-        Indicator2.LeanScale(Vector3.one * 4f, 0.15f).setEaseOutCirc().setDelay(1.65f);
-        Indicator2.LeanScale(Vector3.one * 1.25f, 0.2f).setEaseInSine().setDelay(1.8f);
+        //Indicator2.LeanScale(Vector3.zero, 0);
+        LeanTween.delayedCall(1.75f, ()=>{Indicator2.transform.localScale = Vector3.one * 4; Indicator2.LeanAlpha(0.75f, 0.125f);});
+        Indicator2.LeanScale(Vector3.one * 1f, 0.25f).setEaseInBack().setDelay(1.75f);
 
-        Indicator1.LeanColor(Color.white, 0).setEaseInSine().setDelay(1.95f);
+        Indicator1.LeanColor(Color.white, 0.1f).setEaseInSine().setDelay(1.9f);
 
     }
 

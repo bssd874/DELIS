@@ -16,6 +16,7 @@ MonoBehaviour:
   levelPackInfo:
     cost: 1000
   levelDatas:
+  - {fileID: 11400000, guid: 4971451db4774214480d50dea468a034, type: 2}
   - {fileID: 11400000, guid: 889f710e6b72281498890269ad0d0586, type: 2}
   - {fileID: 11400000, guid: 4f98d43045d3899478eb182fdb048fed, type: 2}
   - {fileID: 11400000, guid: 97a0ab7c88755604cb94568d91dd8cd4, type: 2}

@@ -40,6 +40,10 @@ public class GameplayScript : MonoBehaviour
     public RectTransform Top;
     public RectTransform Bottom;
 
+    public Vector3 targetPos;
+    public Vector3 velocity;
+    public GameObject grid;
+
     NoteAnalyzer analyzer;
 
     void Awake()
@@ -61,10 +65,18 @@ public class GameplayScript : MonoBehaviour
         notePlayer.Play(_levelData.audioClip, _noteMap);
         GameplayState.main.Pause();
         GameplayState.main.DisplayCountdownScreen();
+
+        grid.LeanMove(targetPos, 1).setFollow();
+    }
+
+    void Update()
+    {
+        grid.transform.position = Vector3.SmoothDamp(grid.transform.position,targetPos, ref velocity, 2);
     }
 
     void Hit()
     {
+        targetPos = new Vector3(Random.Range(-40, 40), Random.Range(-40, 40), 0);
         Top.LeanCancel();
         Bottom.LeanCancel();
         TouchInputHandler.DeployRay(analyzer.GetNoteDataOffset(0).worldPosition);
