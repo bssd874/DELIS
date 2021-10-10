@@ -1,113 +1,110 @@
-using System.IO;
+using NoteSystem.Class;
 using UnityEngine;
+using LP;
+using System.IO;
 
-[CreateAssetMenu(fileName = "LevelPack", menuName = "Level/LevelPack")]
+[CreateAssetMenu(fileName = "LevelPack", menuName = "LevelSystem/LevelPack")]
+//meyimpan level data
 public class LevelPack : ScriptableObject
 {
-    public string packName;
-
-    public LevelPackInfo levelPackInfo;
-    public LevelPackData levelPackData;
-    public LevelPackData _LevelPackData
+    public Info info;
+    public Data data;
+    public Data _data
     {
         set
         {
-            levelPackData = value;
+            data = value;
         }
         get
         {
-            if (levelPackData == null) levelPackData = LevelPackData.Load(this);
-            if (levelPackData == null) levelPackData = new LevelPackData();
-
-            return levelPackData;
+            if (data == null) data = new Data();
+            return data;
         }
     }
+    public LevelData[] levelDatas;
 
-    public void SaveData()
+    [ContextMenu("Load All")]
+    public void LoadAll()
     {
-        LevelPackData.Save(this, _LevelPackData);
+        Module.LoadLevelDatas(this);
+    }
+}
+
+namespace LP
+{
+    [System.Serializable]
+    public class Info
+    {
+        public string name;
+        public int cost = 0;
     }
 
-    public LevelData[] levelDatas = new LevelData[0];
-
-    public static LevelPack[] GetLevelPacks(string path = "Levels")
-    {
-        LevelPack[] levelPacks = Resources.LoadAll<LevelPack>(path);
-        return levelPacks;
+    [System.Serializable]
+    public class Data
+    {            
+        public bool purchased = false;
     }
 
-    public float skills
+    public class Module
     {
-        get
+        public static void LoadLevelDatas(LevelPack levelPack)
         {
-            float value = 0;
-            int total = 0;
-            foreach(LevelData levelData in levelDatas)
+            string pathPack = $"Levels/NoteMap/{levelPack.info.name}";
+            levelPack.levelDatas = Resources.LoadAll<LevelData>($"Levels/LevelData/{levelPack.info.name}/");
+            for (int i = 0; i < levelPack.levelDatas.Length; i++) 
             {
-                value += levelData.skills;
-                total += 1;
+                string pathData = $"{pathPack}/{levelPack.levelDatas[i].info.name}/";
+
+                TextAsset[] textAssets = Resources.LoadAll<TextAsset>(pathData);
+                NoteMap[] noteMaps = new NoteMap[textAssets.Length];
+                for (int j = 0; j < noteMaps.Length; j++)
+                {
+                    noteMaps[j] = JsonUtility.FromJson<NoteMap>(textAssets[j].text);
+                }
+                levelPack.levelDatas[i].noteMaps = noteMaps;
             }
-            return value / total;
         }
-    }
-
-    public void LoadAllMusic()
-    {
-
-        _LevelPackData.unlocked = true;
-        SaveData();
-
-        foreach (LevelData levelData in levelDatas)
+        public static LevelPack[] GetLevelPacks()
         {
-            AudioClip clip = levelData.audioClip;
+            string path = $"Levels/LevelPack/";
+            LevelPack[] levelPacks = Resources.LoadAll<LevelPack>(path);
+            for (int i = 0; i < levelPacks.Length; i++) 
+            {
+                LP.Module.LoadData(levelPacks[i]);
+                LP.Module.LoadLevelDatas(levelPacks[i]);
+            }
+            return levelPacks;
         }
-    }
 
-    public void UnloadAllMusic()
-    {
-        foreach (LevelData levelData in levelDatas)
+        public static void LoadMusic(LevelData[] levelDatas)
         {
-            Resources.UnloadAsset(levelData.music);
-            levelData.music = null;
+            for (int i = 0; i < levelDatas.Length; i++)
+            {
+                string pathMusic = $"Musics/{levelDatas[i].info.music}";
+                levelDatas[i].data.audioClip = Resources.Load<AudioClip>(pathMusic);
+            }
         }
-    }
-}
+        public static void UnLoadMusic(LevelData[] levelDatas)
+        {
+            for (int i = 0; i < levelDatas.Length; i++)
+            {
+                Resources.UnloadAsset(levelDatas[i].data.audioClip);
+            }
+        }
 
-[System.Serializable]
-public class LevelPackInfo
-{
-    public int cost;
-}
+        public static void SaveData(LevelPack levelPack)
+        {
+            Game.Save(levelPack._data, $"/{levelPack.info.name}.json", "/User/LevelPack");
+        }
 
-public class LevelPackData
-{
-    public bool unlocked;
+        public static void LoadData(LevelPack levelPack)
+        {
+            if (!Game.Load(levelPack._data, $"/{levelPack.info.name}.json", "/User/LevelPack"))
+            {
+                SaveData(levelPack);
+                Game.Load(levelPack._data, $"/{levelPack.info.name}.json", "/User/LevelPack");
+            }
+        }
 
-    public static void Save(LevelPack levelPack, LevelPackData levelPackData)
-    {
-        string filePath = GetFilePath(levelPack);
-        File.WriteAllText(
-            filePath, 
-            JsonUtility.ToJson(levelPackData)
-        );
-        Debug.Log("Level Pack saved to : " + filePath);
-    }
-
-    public static LevelPackData Load(LevelPack levelPack)
-    {
-        string filePath = GetFilePath(levelPack);
-        if (!File.Exists(filePath)) return new LevelPackData();
-        Debug.Log("Level Pack loaded from : " + filePath);
-        return JsonUtility.FromJson<LevelPackData>(
-            File.ReadAllText(filePath)
-        );
-    }
-
-    public static string GetFilePath (LevelPack levelPack)
-    {
-        string path = Application.persistentDataPath + "/SaveData/LevelPacks/";
-        Directory.CreateDirectory(path);
-        string filePath = path + levelPack.packName + ".json";
-        return filePath;
     }
 }
