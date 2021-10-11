@@ -47,11 +47,11 @@ public class Gameplay : MonoBehaviour
         notePlayer.notes = NoteMap.GetNotes(noteMap);
         ScoreSystem.totalNotes = NoteMap.GetTotalNotes(noteMap);
 
-        notePlayer.Activate(this, noteArea);
-
         notePlayer.audioSource.Stop();
         notePlayer.audioSource.clip = LevelSelector.levelData.data.audioClip;
         Begin();
+
+        notePlayer.Activate(this, noteArea);
     }
 
     // Function
@@ -65,6 +65,9 @@ public class Gameplay : MonoBehaviour
     {
 
     }
+
+    // GUI Command
+
 }
 
 [System.Serializable]

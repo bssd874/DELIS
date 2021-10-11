@@ -173,10 +173,9 @@ namespace NoteSystem.Manager
             {
                 while (notes[i].globalTime > audioSource.time + offset) yield return null;
                 if (!analyzing) yield return null;
-
                 index = i;
                 eventCallback.Invoke();
-                actionCallback.Invoke();
+                actionCallback?.Invoke();
             }
             EndCallback.Invoke();
         }

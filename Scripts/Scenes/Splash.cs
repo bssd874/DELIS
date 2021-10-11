@@ -5,9 +5,10 @@ using UnityEngine;
 public class Splash : MonoBehaviour
 {
     // Core
+    public Animator animator;
 
     // Default
-    
+
     void Start()
     {
         Initialize();
@@ -17,9 +18,10 @@ public class Splash : MonoBehaviour
 
     public void Initialize()
     {
-        
+        animator.Play("Begin");
     }
 
     // Function
+
 
 }

@@ -50,10 +50,15 @@ namespace LP
         public static void LoadLevelDatas(LevelPack levelPack)
         {
             string pathPack = $"Levels/NoteMap/{levelPack.info.name}";
+
+            Directory.CreateDirectory(Application.dataPath + "/Resources/" + $"Levels/LevelData/{levelPack.info.name}/");
+
             levelPack.levelDatas = Resources.LoadAll<LevelData>($"Levels/LevelData/{levelPack.info.name}/");
             for (int i = 0; i < levelPack.levelDatas.Length; i++) 
             {
-                string pathData = $"{pathPack}/{levelPack.levelDatas[i].info.name}/";
+                string pathData = $"{pathPack}/{levelPack.levelDatas[i].info.music}/";
+
+                Directory.CreateDirectory(Application.dataPath + "/Resources/" + pathData);
 
                 TextAsset[] textAssets = Resources.LoadAll<TextAsset>(pathData);
                 NoteMap[] noteMaps = new NoteMap[textAssets.Length];
@@ -67,11 +72,12 @@ namespace LP
         public static LevelPack[] GetLevelPacks()
         {
             string path = $"Levels/LevelPack/";
+
             LevelPack[] levelPacks = Resources.LoadAll<LevelPack>(path);
             for (int i = 0; i < levelPacks.Length; i++) 
             {
                 LP.Module.LoadData(levelPacks[i]);
-                LP.Module.LoadLevelDatas(levelPacks[i]);
+                levelPacks[i].LoadAll();
             }
             return levelPacks;
         }
