@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6718c6b9e4de7d744afd90490f137242, type: 3}
-  m_Name: Banten
+  m_Name: Jawa Timur
   m_EditorClassIdentifier: 
   info:
-    name: Banten
-    music: Dayung Sampan
-    description: Provinsi Banten adalah provinsi pemekaran dari Provinsi Jawa Barat
-      sejak 4 Oktober 2000. Melalui Undang-Undang Nomor 23 Tahun 2000, provinsi ini
-      memisahkan diri dari Jawa Barat. Pusat pemerintahannya berada di Kota Serang.
-      Luas wilayah Banten terhitung kecil dibandingkan dengan provinsi lain di Indonesia.
+    name: Jawa Timur
+    music: Kerraban Sape
+    description: "Jawa Timur adalah sebuah provinsi di bagian timur Pulau Jawa, Indonesia.
+      Ibukota terletak di Surabaya. Jawa Timur mempunyai penduduk berjumlah 38.052.950
+      jiwa atau 0, 84% dari total populasi nasional dan luas wilayah seluas 47.154
+      km\xB2, terdiri dari 29 Kabupaten dan 9 Kota."
     source: 
   noteMaps: []

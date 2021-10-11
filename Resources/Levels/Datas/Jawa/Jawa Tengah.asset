@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6718c6b9e4de7d744afd90490f137242, type: 3}
-  m_Name: Banten
+  m_Name: Jawa Tengah
   m_EditorClassIdentifier: 
   info:
-    name: Banten
-    music: Dayung Sampan
-    description: Provinsi Banten adalah provinsi pemekaran dari Provinsi Jawa Barat
-      sejak 4 Oktober 2000. Melalui Undang-Undang Nomor 23 Tahun 2000, provinsi ini
-      memisahkan diri dari Jawa Barat. Pusat pemerintahannya berada di Kota Serang.
-      Luas wilayah Banten terhitung kecil dibandingkan dengan provinsi lain di Indonesia.
+    name: Jawa Tengah
+    music: Cublak Cublak Suweng
+    description: Secara administratif, provinsi ini terdiri dari 29 kabupaten, 6
+      kota, 576 kecamatan, dan 8.559 desa/kelurahan (BPS, 2020). Luas wilayahnya
+      sebesar 3,25 juta hektar atau sekitar 25,04 persen dari luas Pulau Jawa dan
+      1,70 persen dari luas Indonesia.
     source: 
   noteMaps: []
