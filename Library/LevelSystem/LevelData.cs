@@ -25,7 +25,6 @@ namespace LD
         public string source;
     }
 
-    [System.Serializable]
     public class Data
     {
         public AudioClip audioClip;
@@ -55,5 +54,38 @@ namespace LD
             }
         }
     }
+    
+
+    public class Module
+    {
+        // Levels/NoteMap/LevelPack/Data/Music
+
+        public static LevelData[] GetLevelDatas(string levelPack)
+        {
+            string sector = $"Levels/Datas/";
+            string levelFolder = sector + $"{levelPack}/";
+
+            Directory.CreateDirectory(Application.dataPath + "/Resources/" + levelFolder);
+
+            return Resources.LoadAll<LevelData>(levelFolder);
+        }
+
+        public static void LoadLevelDatas(string levelPack, LevelData[] levelDatas)
+        {
+            foreach (LevelData levelData in levelDatas)
+            {
+                LoadLevelData(levelPack, levelData);
+            }
+        }
+
+        static void LoadLevelData(string levelPack, LevelData levelData)
+        {
+            levelData.noteMaps = NP.Module.GetNoteMaps(levelPack, levelData.info.name, levelData.info.music);
+        }
+
+        
+    }
+
+    
 
 }

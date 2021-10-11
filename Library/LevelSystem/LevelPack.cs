@@ -47,55 +47,65 @@ namespace LP
 
     public class Module
     {
+        // Levels/NoteMap/LevelPack/LevelData/Music
         public static void LoadLevelDatas(LevelPack levelPack)
         {
-            string pathPack = $"Levels/NoteMap/{levelPack.info.name}";
-
-            Directory.CreateDirectory(Application.dataPath + "/Resources/" + $"Levels/LevelData/{levelPack.info.name}/");
-
-            levelPack.levelDatas = Resources.LoadAll<LevelData>($"Levels/LevelData/{levelPack.info.name}/");
-            for (int i = 0; i < levelPack.levelDatas.Length; i++) 
-            {
-                string pathData = $"{pathPack}/{levelPack.levelDatas[i].info.music}/";
-
-                Directory.CreateDirectory(Application.dataPath + "/Resources/" + pathData);
-
-                TextAsset[] textAssets = Resources.LoadAll<TextAsset>(pathData);
-                NoteMap[] noteMaps = new NoteMap[textAssets.Length];
-                for (int j = 0; j < noteMaps.Length; j++)
-                {
-                    noteMaps[j] = JsonUtility.FromJson<NoteMap>(textAssets[j].text);
-                }
-                levelPack.levelDatas[i].noteMaps = noteMaps;
-            }
+            levelPack.levelDatas = LD.Module.GetLevelDatas(levelPack.info.name);
+            LD.Module.LoadLevelDatas(levelPack.info.name, levelPack.levelDatas);
         }
         public static LevelPack[] GetLevelPacks()
         {
-            string path = $"Levels/LevelPack/";
+            string pathFolder = $"Levels/Packs/";
 
-            LevelPack[] levelPacks = Resources.LoadAll<LevelPack>(path);
-            for (int i = 0; i < levelPacks.Length; i++) 
-            {
-                LP.Module.LoadData(levelPacks[i]);
-                levelPacks[i].LoadAll();
-            }
+            LevelPack[] levelPacks = Resources.LoadAll<LevelPack>(pathFolder);
+
             return levelPacks;
         }
 
-        public static void LoadMusic(LevelData[] levelDatas)
+        public static void LoadLevelPacks(LevelPack[] levelPacks)
         {
-            for (int i = 0; i < levelDatas.Length; i++)
+            for (int i = 0; i < levelPacks.Length; i++) 
             {
-                string pathMusic = $"Musics/{levelDatas[i].info.music}";
-                levelDatas[i].data.audioClip = Resources.Load<AudioClip>(pathMusic);
+                LoadLevelPack(levelPacks[i]);
             }
         }
-        public static void UnLoadMusic(LevelData[] levelDatas)
+
+        static void LoadLevelPack(LevelPack levelPack)
         {
-            for (int i = 0; i < levelDatas.Length; i++)
+            LP.Module.LoadData(levelPack);
+            levelPack.LoadAll();
+        }
+
+        // Format Musik Adalah "LevelPack/LevelData/Musik"
+        public static void LoadMusics(LevelPack levelPack)
+        {
+            for (int i = 0; i < levelPack.levelDatas.Length; i++)
             {
-                Resources.UnloadAsset(levelDatas[i].data.audioClip);
+                LevelData levelData = levelPack.levelDatas[i];
+                levelData.data.audioClip = LoadMusic(
+                    levelPack.info.name,
+                    levelData.info.name,
+                    levelData.info.music
+                    );
             }
+        }
+        public static void UnLoadMusics(LevelPack levelPack)
+        {
+            for (int i = 0; i < levelPack.levelDatas.Length; i++)
+            {
+                Resources.UnloadAsset(levelPack.levelDatas[i].data.audioClip);
+            }
+        }
+
+        static AudioClip LoadMusic(string levelPack, string levelData, string music)
+        {
+            string sector = $"Musics/Pack/";
+            string musicFolder = sector + $"{levelPack}/{levelData}/";
+            string musicPath = musicFolder + $"{music}.mp3";
+
+            Directory.CreateDirectory(musicFolder);
+
+            return Resources.Load<AudioClip>(musicPath);
         }
 
         public static void SaveData(LevelPack levelPack)

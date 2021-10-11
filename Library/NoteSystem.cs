@@ -125,6 +125,29 @@ namespace NoteSystem.Class
 
     }
 
+    public class NP
+    {
+        public class Module
+        {
+            public static NoteMap[] GetNoteMaps(string levelPack, string levelData, string music)
+            {
+                string sector = $"Levels/Maps/";
+                string musicFolder = sector + $"{levelPack}/{levelData}/{music}/";
+
+                Directory.CreateDirectory(Application.dataPath + "/Resources/" + musicFolder);
+
+                TextAsset[] textAssets = Resources.LoadAll<TextAsset>(musicFolder);
+                NoteMap[] noteMaps = new NoteMap[textAssets.Length];
+                for (int j = 0; j < noteMaps.Length; j++)
+                {
+                    noteMaps[j] = JsonUtility.FromJson<NoteMap>(textAssets[j].text);
+                }
+
+                return noteMaps;
+            }
+        }
+    }
+
     [System.Serializable]
     public class NoteRegister
     {

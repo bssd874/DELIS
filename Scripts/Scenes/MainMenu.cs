@@ -42,7 +42,7 @@ public class MainMenu : MonoBehaviour
 
     public static void Enter(LevelPack levelPack)
     {
-        LP.Module.LoadMusic(levelPack.levelDatas);
+        LP.Module.LoadMusics(levelPack);
         LevelSelector.levelPack = levelPack;
         UnityEngine.SceneManagement.SceneManager.LoadScene("LevelSelector");
     }
