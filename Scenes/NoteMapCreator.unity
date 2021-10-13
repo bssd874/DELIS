@@ -244,14 +244,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouse: 1
-  touch: 0
-  Pack: Kalimantan
-  Data: Cik Cik Periuk
-  Map: A
+  touch: 1
+  levelPack: {fileID: 11400000, guid: 983a046fb7aa7304c8d12491f756faeb, type: 2}
+  levelData: {fileID: 11400000, guid: 2fd8b7fd1dcd02644943f7d7ebce4c24, type: 2}
+  audioClip: {fileID: 0}
+  mapName: A
+  notePackIndex: 0
   audioSource: {fileID: 338552843}
   area: {fileID: 333860112}
   trailRenderer: {fileID: 371357320}
-  notePackIndex: 0
   noteMap:
     packs:
     - registerIndex: 0

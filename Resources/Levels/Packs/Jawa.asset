@@ -15,6 +15,10 @@ MonoBehaviour:
   info:
     name: Jawa
     cost: 0
-  data:
-    purchased: 0
-  levelDatas: []
+  levelDatas:
+  - {fileID: 11400000, guid: fe2ef91ffe786cc40bd7ff24795f0a0f, type: 2}
+  - {fileID: 11400000, guid: 1c4118b729319a847aa1e89b5c695c62, type: 2}
+  - {fileID: 11400000, guid: f4462d5e0e44d184198774781bdda346, type: 2}
+  - {fileID: 11400000, guid: 7a478c7302b8f5345ac77a6e2ac6cb60, type: 2}
+  - {fileID: 11400000, guid: 1b65f2d671757ff4ba023d30b6668c48, type: 2}
+  - {fileID: 11400000, guid: 3131d55afc761b04bae7d70d2f4960f8, type: 2}
