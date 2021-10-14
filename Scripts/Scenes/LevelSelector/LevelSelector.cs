@@ -32,6 +32,12 @@ public class LevelSelector : MonoBehaviour
     public static void Select(LevelData selected)
     {
         levelData = selected;
+        Play(selected);
+    }
+
+    public static void Play(LevelData selected)
+    {
+        if (User.Data._main.creator) NoteMapCreator.Create(selected);
         LoadingScreen.Load(() => Gameplay.Play(selected));
     }
 

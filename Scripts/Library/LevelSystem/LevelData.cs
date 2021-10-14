@@ -1,7 +1,8 @@
-using NoteSystem.Class;
-using UnityEngine;
+using System;
 using System.IO;
 using LD;
+using NoteSystem.Class;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "LevelData", menuName = "LevelSystem/LevelData")]
 //menyimpan data
@@ -10,6 +11,18 @@ public class LevelData : ScriptableObject
     public Info info;
     public Data data = new Data();
     public NoteMap[] noteMaps;
+
+    private void OnValidate()
+    {
+        if (info.name == "")
+        {
+            info.name = name;
+        }
+        if (info.music == "")
+        {
+            info.music = name;
+        }
+    }
 
 }
 
@@ -22,6 +35,10 @@ namespace LD
         public string music;
         public string description;
         public string source;
+
+        [Header("Main")]
+        public string levelPack = "default";
+
     }
 
     public class Data
@@ -50,7 +67,7 @@ namespace LD
         {
             if (noteMap.data.ID == "")
             {
-                noteMap.data.ID = Random.state.ToString();
+                noteMap.data.ID = UnityEngine.Random.state.ToString();
             }
         }
     }
@@ -75,6 +92,7 @@ namespace LD
             foreach (LevelData levelData in levelDatas)
             {
                 LoadLevelData(levelPack, levelData);
+                levelData.info.levelPack = levelPack;
             }
         }
 
@@ -82,10 +100,5 @@ namespace LD
         {
             levelData.noteMaps = NP.Module.GetNoteMaps(levelPack, levelData.info.name, levelData.info.music);
         }
-
-
     }
-
-
-
 }

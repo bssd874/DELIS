@@ -1,6 +1,7 @@
 using System.IO;
 using LP;
 using NoteSystem.Class;
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "LevelPack", menuName = "LevelSystem/LevelPack")]
@@ -23,11 +24,58 @@ public class LevelPack : ScriptableObject
     }
     public LevelData[] levelDatas;
 
+    public LevelDataClass[] levelDataClass;
+
+    private void OnEnable()
+    {
+        if (info.name == "")
+        {
+            info.name = name;
+        }
+    }
+
+    [ContextMenu("Load Musics")]
+    private void LoadMusics()
+    {
+        LP.Module.LoadMusics(this);
+    }
+
     [ContextMenu("Load All")]
     public void LoadAll()
     {
         Module.LoadLevelDatas(this);
     }
+
+    [ContextMenu("Load All LevelPacks")]
+    public void LoadAllLevelPacks()
+    {
+        LevelPack[] levelPacks = LP.Module.GetLevelPacks();
+        foreach (LevelPack levelPack in levelPacks)
+        {
+            Module.LoadLevelDatas(levelPack);
+            Module.LoadMusics(levelPack);
+        }
+    }
+
+    [ContextMenu("Create Scriptable Objects")]
+    public void IntializeLevelDataClass()
+    {
+        foreach (LevelDataClass dataClass in levelDataClass)
+        {
+            LevelData data = ScriptableObject.CreateInstance<LevelData>();
+            data.info = dataClass.info;
+            AssetDatabase.Refresh();
+            AssetDatabase.CreateAsset(data, $"Assets/Resources/Levels/Datas/{info.name}/{data.info.name}.asset");
+            AssetDatabase.SaveAssets();
+        }
+    }
+
+    [System.Serializable]
+    public class LevelDataClass
+    {
+        public LD.Info info;
+    }
+
 }
 
 namespace LP
@@ -36,7 +84,7 @@ namespace LP
     public class Info
     {
         public string name;
-        public int cost = 0;
+        public int cost = 10000;
     }
 
     public class Data
@@ -110,8 +158,6 @@ namespace LP
 
             Sprite spriteTexture = Resources.Load<Sprite>(spritePath);
 
-            Debug.Log(spriteTexture);
-
             return spriteTexture;
 
         }
@@ -125,8 +171,6 @@ namespace LP
             Directory.CreateDirectory(Application.dataPath + "/Resources/" + musicFolder);
 
             AudioClip audioClip = Resources.Load<AudioClip>(musicPath);
-
-            Debug.Log(audioClip);
 
             return audioClip;
         }

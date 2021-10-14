@@ -172,6 +172,7 @@ MonoBehaviour:
   - instance: {fileID: 3022699874413128030, guid: af443a22e7c5e5a45bf9d33043bb675a, type: 3}
     offset: -1
   notePlayer:
+    autoplay: 1
     audioSource: {fileID: 83108944}
   noteArea: {fileID: 83108941}
 --- !u!82 &83108944
@@ -282,8 +283,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58e3b2a4db2724c47beb5f77a4a2da78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouse: 1
-  touch: 1
 --- !u!1 &170889588
 GameObject:
   m_ObjectHideFlags: 0

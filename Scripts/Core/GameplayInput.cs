@@ -2,27 +2,25 @@ using UnityEngine;
 
 public class GameplayInput : MonoBehaviour
 {
-    public bool mouse;
-    public bool touch;
+    public bool mouse = true;
+    public bool touch = true;
 
     void Update()
     {
-        MouseInput();
-        TouchInput();
+        if (mouse) MouseInput();
+        if (touch) TouchInput();
     }
 
-    public void MouseInput()
+    public static void MouseInput()
     {
-        if (!mouse) return;
         if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.X))
         {
             RayInput(Input.mousePosition);
         }
-}
+    }
 
-    public void TouchInput()
+    public static void TouchInput()
     {
-        if (!touch) return;
         foreach (Touch touch in Input.touches)
         {
             if (touch.phase == TouchPhase.Began)
@@ -32,11 +30,11 @@ public class GameplayInput : MonoBehaviour
         }
     }
 
-    public void RayInput(Vector2 screen)
+    public static void RayInput(Vector2 screen)
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(screen), Vector2.zero);
- 
-        if(hit.collider != null)
+
+        if (hit.collider != null)
         {
             Destroy(hit.collider);
             GameNote gameNote = hit.transform.GetComponent<GameNote>();

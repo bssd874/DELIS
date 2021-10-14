@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6718c6b9e4de7d744afd90490f137242, type: 3}
+  m_Name: Sumatra Utara
+  m_EditorClassIdentifier: 
+  info:
+    name: Sumatra Utara
+    music: Sik Sik Sibatumanikam
+    description: Sumatera Utara adalah sebuah provinsi yang terletak di Pulau Sumatera,
+      berbatasan dengan Aceh di sebelah utara dan dengan Sumatera Barat serta Riau
+      di sebelah selatan. Provinsi ini terutama merupakan kampung halaman suku bangsa
+      Batak, yang hidup di pegunungan dan suku bangsa Melayu yang hidup di daerah
+      pesisir timur.
+    source: Lagu Daerah Indonesia
+  noteMaps: []

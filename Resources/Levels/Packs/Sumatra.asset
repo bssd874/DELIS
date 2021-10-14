@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d3d9d85a78d6f441a70e8aba43e9fc1, type: 3}
+  m_Name: Sumatra
+  m_EditorClassIdentifier: 
+  info:
+    name: Sumatra
+    cost: 10000
+  levelDatas:
+  - {fileID: 11400000, guid: a4e0b96fc4783254f829ca8c4b1e5300, type: 2}
+  - {fileID: 11400000, guid: dc8f514e563938e4e81ce9ee44240e98, type: 2}
+  - {fileID: 11400000, guid: 5c38779432144a841a36f6fa700032bc, type: 2}
+  - {fileID: 11400000, guid: 049267f7dd36e5e49a8a205f8c454c1f, type: 2}
+  - {fileID: 11400000, guid: 66589286f76de1d43b0f28cb62add29f, type: 2}
+  - {fileID: 11400000, guid: dc6ed61968120c74d94e03d249b33e5f, type: 2}
+  - {fileID: 11400000, guid: d3374969dd485604f99a8c7aba27f91b, type: 2}
+  - {fileID: 11400000, guid: 5b520a8230d21434fbf5b4b0208675a0, type: 2}
+  - {fileID: 11400000, guid: 9b2e1d2c2489b5a479e9ac1f0d7c6e16, type: 2}
+  - {fileID: 11400000, guid: 6413a4497b424b74083601cd53311bf1, type: 2}
+  levelDataClass:
+  - info:
+      name: Aceh
+      music: Jambo Jambo
+      description: Aceh  adalah sebuah provinsi di Indonesia yang ibu kotanya berada
+        di Banda Aceh. Aceh terletak di ujung utara pulau Sumatra dan merupakan provinsi
+        paling barat di Indonesia. Menurut hasil sensus Badan Pusat Statistik tahun
+        2020, jumlah penduduk provinsi ini sekitar 5.274.871 jiwa.
+      source: Lagu Daerah Indonesia
+  - info:
+      name: Sumatra Utara
+      music: Sik Sik Sibatumanikam
+      description: Sumatera Utara adalah sebuah provinsi yang terletak di Pulau Sumatera,
+        berbatasan dengan Aceh di sebelah utara dan dengan Sumatera Barat serta Riau
+        di sebelah selatan. Provinsi ini terutama merupakan kampung halaman suku
+        bangsa Batak, yang hidup di pegunungan dan suku bangsa Melayu yang hidup
+        di daerah pesisir timur.
+      source: Lagu Daerah Indonesia
+  - info:
+      name: Sumatra Barat
+      music: Anak Daro
+      description: "Sumatra Barat terletak di pesisir barat di bagian tengah pulau
+        Sumatra yang terdiri dari dataran rendah di pantai barat dan dataran tinggi
+        vulkanik yang dibentuk oleh Bukit Barisan. Provinsi ini memiliki daratan
+        seluas 42.297,30 km\xB2 yang setara dengan 2,17% luas Indonesia."
+      source: Lagu Daerah Indonesia
+  - info:
+      name: Riau
+      music: Segantang Lada
+      description: Riau merupakan salah satu provinsi terbesar di Pulau Sumatera
+        yang kental dengan kultur budaya khas melayu. Daerah ini juga strategis karena
+        terletak di jalur perdagangan internasional Selat Malaka dan berada di segitiga
+        pertumbuhan ekonomi tiga negara, Indonesia, Malaysia, dan Thailand
+      source: Lagu Daerah Indonesia
+  - info:
+      name: Kepulauan Riau
+      music: Pulau Bintan
+      description: Provinsi Kepulauan Riau terbentuk berdasarkan Undang-undang Nomor
+        25 tahun 2002 merupakan provinsi ke-32 di Indonesia yang mencakup Kota Tanjungpinang,
+        Kota Batam, Kabupaten Bintan, Kabupaten Karimun, Kabupaten Natuna, Kabupaten
+        Kepulauan Anambas dan Kabupaten Lingga.
+      source: Lagu Daerah Indonesia
+  - info:
+      name: Jambi
+      music: Pinang Muda
+      description: "Kota Jambi (Melayu: \u0643\u0648\u062A\u0627 \u062C\u0645\u0628\u064A)
+        adalah sebuah kota yang berada di pulau Sumatra, Indonesia dan sekaligus
+        merupakan ibukota dari provinsi Jambi. Kota Jambi dibelah oleh sungai terpanjang
+        di Sumatera yang bernama Batanghari, kedua kawasan tersebut terhubung oleh
+        jembatan Aur Duri."
+      source: Lagu Daerah Indonesia
+  - info:
+      name: Sumatra Selatan
+      music: Cuk Mak Ilang
+      description: Provinsi Sumatra Selatan dikenal juga dengan sebutan "Bumi Sriwijaya".
+        Pada abad ke-7 hingga abad ke-12 Masehi wilayah ini merupakan pusat Kerajaan
+        Sriwijaya yang juga terkenal dengan kerajaan maritim terbesar dan terkuat
+        di Nusantara.Sejak abad ke-13 sampai abad ke-14, wilayah ini berada di bawah
+        kekuasaan Majapahit.
+      source: Lagu Daerah Indonesia
+  - info:
+      name: Kepulauan Bangka Belitung
+      music: Yok Miak
+      description: Kepulauan Bangka Belitung (disingkat Babel) adalah sebuah provinsi
+        di Indonesia yang terdiri dari dua pulau utama yaitu Pulau Bangka dan Pulau
+        Belitung serta ratusan pulau-pulau kecil, total pulau yang telah bernama
+        berjumlah 470 buah dan yang berpenghuni hanya 50 pulau.
+      source: Lagu Daerah Indonesia
+  - info:
+      name: Bengkulu
+      music: Ikan Pais
+      description: 
+      source: Lagu Daerah Indonesia
+  - info:
+      name: Lampung
+      music: Lipang Lipang Dang
+      description: Lampung adalah provinsi paling selatan di Pulau Sumatera. Daerah
+        yang kini dihuni sekitar 8,03 juta jiwa ini amat strategis karena menjadi
+        pintu gerbang lintas Jawa-Sumatera. Lampung dulu satu di antara empat keresidenan
+        dalam daerah Provinsi Sumatera Selatan.
+      source: Lagu Daerah Indonesia

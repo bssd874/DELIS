@@ -245,8 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouse: 1
   touch: 1
-  levelPack: {fileID: 11400000, guid: 983a046fb7aa7304c8d12491f756faeb, type: 2}
-  levelData: {fileID: 11400000, guid: 2fd8b7fd1dcd02644943f7d7ebce4c24, type: 2}
+  localLevelData: {fileID: 11400000, guid: fc7f26c36a1418b419d6ee60324166a5, type: 2}
   audioClip: {fileID: 0}
   mapName: A
   notePackIndex: 0

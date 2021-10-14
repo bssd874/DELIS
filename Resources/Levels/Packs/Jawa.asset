@@ -14,11 +14,70 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   info:
     name: Jawa
-    cost: 0
+    cost: 10000
   levelDatas:
-  - {fileID: 11400000, guid: fe2ef91ffe786cc40bd7ff24795f0a0f, type: 2}
-  - {fileID: 11400000, guid: 1c4118b729319a847aa1e89b5c695c62, type: 2}
-  - {fileID: 11400000, guid: f4462d5e0e44d184198774781bdda346, type: 2}
-  - {fileID: 11400000, guid: 7a478c7302b8f5345ac77a6e2ac6cb60, type: 2}
-  - {fileID: 11400000, guid: 1b65f2d671757ff4ba023d30b6668c48, type: 2}
-  - {fileID: 11400000, guid: 3131d55afc761b04bae7d70d2f4960f8, type: 2}
+  - {fileID: 11400000, guid: 98cae0387bcac394f8e45b66b4c1bd49, type: 2}
+  - {fileID: 11400000, guid: c229ec66a377d4944821071b1416d1f4, type: 2}
+  - {fileID: 11400000, guid: a78331af04292d74eaca25154386bb7d, type: 2}
+  - {fileID: 11400000, guid: dfbffd2b8b2050347bc4533f98765357, type: 2}
+  - {fileID: 11400000, guid: fc7f26c36a1418b419d6ee60324166a5, type: 2}
+  - {fileID: 11400000, guid: 44e6e3ca9baeec842a6db2d8c308bced, type: 2}
+  levelDataClass:
+  - info:
+      name: Daerah Khusus Ibukota Jakarta
+      music: Jali Jali
+      description: "Jakarta (pengucapan bahasa Indonesia: [d\u0292a\u02C8karta] (
+        simak)), atau secara resmi bernama Daerah Khusus Ibukota Jakarta (disingkat
+        DKI Jakarta) adalah ibu kota negara dan kota terbesar di Indonesia. Jakarta
+        merupakan satu-satunya kota di Indonesia yang memiliki status setingkat provinsi.
+        Jakarta terletak di pesisir bagian barat laut Pulau Jawa. Dahulu pernah dikenal
+        dengan beberapa nama di antaranya Sunda Kelapa, Jayakarta, dan Batavia"
+      source: Lagu Daerah Indonesia
+      levelPack: default
+  - info:
+      name: Banten
+      music: Dayung Sampan
+      description: Provinsi Banten adalah provinsi pemekaran dari Provinsi Jawa Barat
+        sejak 4 Oktober 2000. Melalui Undang-Undang Nomor 23 Tahun 2000, provinsi
+        ini memisahkan diri dari Jawa Barat. Pusat pemerintahannya berada di Kota
+        Serang. Luas wilayah Banten terhitung kecil dibandingkan dengan provinsi
+        lain di Indonesia.
+      source: Lagu Daerah Indonesia
+      levelPack: default
+  - info:
+      name: Jawa Barat
+      music: Tokecang
+      description: Provinsi Jawa Barat berada di bagian barat Pulau Jawa. Wilayahnya
+        berbatasan dengan Laut Jawa di utara, Jawa Tengah di timur, Samudera Hindia
+        di selatan, serta Banten dan DKI Jakarta di barat. Di bagian tengah merupakan
+        pegunungan, yakni bagian dari rangkaian pegunungan yang membujur dari barat
+        hingga timur Pulau Jawa.
+      source: Lagu Daerah Indonesia
+      levelPack: default
+  - info:
+      name: Jawa Tengah
+      music: Cublak Cublak Suweng
+      description: Secara administratif, provinsi ini terdiri dari 29 kabupaten,
+        6 kota, 576 kecamatan, dan 8.559 desa/kelurahan (BPS, 2020). Luas wilayahnya
+        sebesar 3,25 juta hektar atau sekitar 25,04 persen dari luas Pulau Jawa dan
+        1,70 persen dari luas Indonesia.
+      source: Lagu Daerah Indonesia
+      levelPack: default
+  - info:
+      name: Daerah Istimewa Yogyakarta
+      music: Suwe Ora Jamu
+      description: Daerah Istimewa Yogyakarta (DIY) adalah sebuah provinsi di Indonesia
+        yang terletak di bagian selatan pulau Jawa, dengan ibukota Yogyakarta. Secara
+        geografis Provinsi D.I. Sebelah selatan berbatasan Samudera Indonesia dan
+        dibatasi dengan garis panjang pantai sepanjang 110 km.
+      source: Lagu Daerah Indonesia
+      levelPack: default
+  - info:
+      name: Jawa Timur
+      music: Kerraban Sape
+      description: "Jawa Timur adalah sebuah provinsi di bagian timur Pulau Jawa,
+        Indonesia. Ibukota terletak di Surabaya. Jawa Timur mempunyai penduduk berjumlah
+        38.052.950 jiwa atau 0, 84% dari total populasi nasional dan luas wilayah
+        seluas 47.154 km\xB2, terdiri dari 29 Kabupaten dan 9 Kota."
+      source: Lagu Daerah Indonesia
+      levelPack: default

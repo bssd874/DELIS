@@ -29,8 +29,8 @@ public class MainMenu : MonoBehaviour
     {
         _screen = screen;
         LoadingScreen.prefabScreen = Loading;
-        User.Data.main.Save();
-        User.Data.main.Load();
+        User.Data.Save();
+        User.Data.Load();
         Initialize();
     }
 
@@ -51,7 +51,6 @@ public class MainMenu : MonoBehaviour
 
     public static void Enter(LevelPack levelPack)
     {
-        Debug.Log("Selected");
         LP.Module.LoadMusics(levelPack);
         LevelSelector.levelPack = levelPack;
         UnityEngine.SceneManagement.SceneManager.LoadScene("LevelSelector");
@@ -119,13 +118,13 @@ public class LevelPackWindow
 
     public void Buy()
     {
-        User.Data.main.Load();
+        User.Data.Load();
         LP.Module.LoadData(levelPack);
         if (levelPack._data.purchased) return;
         if (User.Data.main.JPoints >= levelPack.info.cost)
         {
             User.Data.main.JPoints -= levelPack.info.cost;
-            User.Data.main.Save();
+            User.Data.Save();
             levelPack._data.purchased = true;
             LP.Module.SaveData(levelPack);
             CheckPurchased();

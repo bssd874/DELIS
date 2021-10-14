@@ -1,17 +1,17 @@
+using System;
 using System.Collections;
-using System.IO;
 using System.Collections.Generic;
-using UnityEngine;
+using System.IO;
 using NoteSystem.Class;
+using UnityEngine;
 
 public class NoteMapCreator : MonoBehaviour
 {
-    
+
     public bool mouse = false;
     public bool touch = false;
-
-    public LevelPack levelPack;
-    public LevelData levelData;
+    public static LevelData levelData;
+    public LevelData localLevelData;
     public AudioClip audioClip;
     public string mapName = "";
     public int notePackIndex = 0;
@@ -24,25 +24,39 @@ public class NoteMapCreator : MonoBehaviour
     [Header("Data")]
     public NoteMap noteMap;
     public List<NoteData> noteDatas;
+    private void OnGUI()
+    {
+        mapName = GUILayout.TextField(mapName);
+    }
 
     void Start()
     {
-        if (levelData.info.music == "") levelData.info.music = audioClip.name;
+
+        if (!levelData) levelData = localLevelData;
+        if (!levelData) return;
 
         AudioClip audio = levelData.data.audioClip;
-        
+
         if (!audio) audio = LP.Module.LoadMusic(
-                    levelPack.info.name,
+                    levelData.info.levelPack,
                     levelData.info.name,
                     levelData.info.music
                     );
-
+        if (!audio) return;
         audioSource.clip = audio;
         audioSource.Play();
     }
 
+    public static void Create(LevelData data)
+    {
+        levelData = data;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("LevelSelector");
+    }
+
     void Update()
     {
+        if (!audioSource || !audioClip)
+            if (audioSource.time >= audioSource.clip.length) UnityEngine.SceneManagement.SceneManager.LoadScene("LevelSelector");
         MouseInput();
         TouchInput();
     }
@@ -54,7 +68,7 @@ public class NoteMapCreator : MonoBehaviour
         {
             Add(Input.mousePosition);
         }
-}
+    }
 
     public void TouchInput()
     {
@@ -77,10 +91,10 @@ public class NoteMapCreator : MonoBehaviour
     [ContextMenu("Save NoteMap")]
     public void Save()
     {
-        
+
 
         string sector = Application.dataPath + $"/Resources/Levels/";
-        string mapFolder = sector + $"Maps/{levelPack.info.name}/{levelData.info.name}/{levelData.info.music}/";
+        string mapFolder = sector + $"Maps/{levelData.info.levelPack}/{levelData.info.name}/{levelData.info.music}/";
         string filePath = mapFolder + $"{mapName}.json";
 
         string json = JsonUtility.ToJson(noteMap);

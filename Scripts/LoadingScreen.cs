@@ -1,5 +1,5 @@
 using System;
-
+using UnityEditor.MPE;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -38,7 +38,7 @@ public class LoadingScreen
 
         public ReferenceObjects(GameObject o)
         {
-            animator = Game.GetReference<Animator>(o, ReferencePaths.animator);
+            animator = o.GetReference<Animator>(ReferencePaths.animator);
         }
     }
 

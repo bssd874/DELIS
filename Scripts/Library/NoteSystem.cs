@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using NoteSystem.Class;
 using UnityEngine;
 using UnityEngine.Events;
-using System.IO;
-
-using NoteSystem.Class;
 
 namespace NoteSystem.Class
 {
@@ -15,7 +14,7 @@ namespace NoteSystem.Class
         public NoteData data;
         public NotePack pack;
 
-        
+
         public Note(NoteData noteData, NotePack notePack)
         {
             data = noteData;
@@ -98,7 +97,7 @@ namespace NoteSystem.Class
 
         public class Result
         {
-            
+
         }
 
         public static Note[] GetNotes(NoteMap noteMap)
@@ -163,7 +162,7 @@ namespace NoteSystem.Class
 namespace NoteSystem.Manager
 {
     //notifikasi
-    public class NoteAnalyzer 
+    public class NoteAnalyzer
     {
         public bool analyzing = true;
 
@@ -208,6 +207,7 @@ namespace NoteSystem.Manager
     [System.Serializable]
     public class NotePlayer
     {
+        public bool autoplay = User.Data._main.autoplay;
         public NoteAnalyzer analyzer;
 
         public Note[] notes;
@@ -224,6 +224,7 @@ namespace NoteSystem.Manager
         {
             GameObject gameObject = GameObject.Instantiate(note.pack.register.instance, (Vector3)note.data.world + Vector3.forward * 100, Quaternion.identity, parent.transform);
             gameObject.LeanMoveLocalZ(0, 1);
+            if (autoplay) LeanTween.delayedCall(-note.pack.register.offset, () => GameplayInput.RayInput(Camera.main.ViewportToScreenPoint(note.data.viewport)));
         }
     }
 
