@@ -177,17 +177,21 @@ namespace LP
 
         public static void SaveData(LevelPack levelPack)
         {
-            Game.Save(levelPack._data, $"/{levelPack.info.name}.json", "/User/LevelPack");
+            Game.Save(levelPack._data, $"/User/LevelPack/{levelPack.info.name}.json");
         }
 
         public static void LoadData(LevelPack levelPack)
         {
-            if (!Game.Load(levelPack._data, $"/{levelPack.info.name}.json", "/User/LevelPack"))
-            {
-                SaveData(levelPack);
-                Game.Load(levelPack._data, $"/{levelPack.info.name}.json", "/User/LevelPack");
-            }
+            SaveData(levelPack);
+            Game.Load(levelPack._data, $"/User/LevelPack/{levelPack.info.name}.json");
         }
+    }
+}
 
+public static class LevelPackExtensions
+{
+    public static void SaveData(this LevelPack levelPack)
+    {
+        levelPack.Save("");
     }
 }

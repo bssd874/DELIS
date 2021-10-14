@@ -105,9 +105,9 @@ public class LevelPackWindow
 
         public ReferenceObjects(GameObject o)
         {
-            title = Game.GetReference<TMP_Text>(o, ReferencePaths.title);
-            enter = Game.GetReference<Button>(o, ReferencePaths.enter);
-            buy = Game.GetReference<Button>(o, ReferencePaths.buy);
+            o.SetReference(title, ReferencePaths.title);
+            o.SetReference(enter, ReferencePaths.enter);
+            o.SetReference(buy, ReferencePaths.buy);
         }
     }
 

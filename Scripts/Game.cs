@@ -1,53 +1,41 @@
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using UnityEngine;
 public static class Game
 {
-    public static T GetReference<T>(this GameObject gameObject, string path)
+    public static void SetReference(this GameObject gameObject, object target, string path)
     {
-        T component = gameObject.transform.Find(path).GetComponent<T>();
-        if (component == null) Debug.Log($"{path} is not found");
-        return component;
+        object obj = gameObject.transform.Find(path).GetComponent(target.GetType());
+        if (obj == null) Debug.Log($"{path} is not found");
+        target = obj;
     }
-    /*
-    public static T GetReference<T>(GameObject gameObject, string path)
-    {
-        return gameObject.transform.Find(path).GetComponent<T>();
-    }
-    */
 
     public static AudioClip GetMusic(string name)
     {
         return Resources.Load<AudioClip>($"Musics/{name}");
     }
 
-    public static void Save(object o, string f = "/null.json", string p = "/null")
+    public static void Save(this object obj, string filePath, bool createDirectory = false)
     {
-        string path = Application.persistentDataPath + p;
-        string file = path + f;
-        Directory.CreateDirectory(path);
+        string folderPath = Path.GetDirectoryName(filePath);
+        if (createDirectory) Directory.CreateDirectory(folderPath); Debug.Log($"Directory created : {folderPath}");
 
-        string json = JsonUtility.ToJson(o);
-        File.WriteAllText(file, json);
-        Debug.Log($"Save Success to {file} with data {json}");
+        string data = JsonUtility.ToJson(obj);
+        File.WriteAllText(filePath, data); Debug.Log($"Data writed to {filePath} with data {data}");
     }
 
-    public static bool Load(object o, string f, string p = "/")
+    public static void Load(this object obj, string filePath, bool createDirectory = false)
     {
-        string path = Application.persistentDataPath + p;
-        string file = path + f;
-        Directory.CreateDirectory(path);
+        string folderPath = Path.GetDirectoryName(filePath);
+        if (createDirectory) Directory.CreateDirectory(folderPath); Debug.Log($"Directory created : {folderPath}");
 
-        bool exist = File.Exists(file);
-        if (exist)
-        {
-            string json = File.ReadAllText(file);
-            JsonUtility.FromJsonOverwrite(json, o);
-            Debug.Log($"Load Success from {file} to {o.ToString()} with data {json}");
-        }
-        return exist;
+        if (!Directory.Exists(filePath)) return;
+
+        string data = File.ReadAllText(filePath);
+
+        JsonUtility.FromJsonOverwrite(data, obj);
     }
-
 }
 
 public class User
@@ -81,11 +69,11 @@ public class User
         public static void Save()
         {
             if (main == null) main = new Data();
-            Game.Save(_main, "/UserData.json", "/User");
+            Game.Save(_main, "/User/UserData.json");
         }
         public static void Load()
         {
-            Game.Load(main, "/UserData.json", "/User");
+            Game.Load(main, "/User/UserData.json");
         }
     }
 

@@ -38,7 +38,7 @@ public class LoadingScreen
 
         public ReferenceObjects(GameObject o)
         {
-            animator = o.GetReference<Animator>(ReferencePaths.animator);
+            o.SetReference(animator, ReferencePaths.animator);
         }
     }
 

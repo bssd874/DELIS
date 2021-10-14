@@ -56,7 +56,6 @@ public class LevelDataWindow
     public static GameObject prefabWindow;
     public GameObject window;
     public LevelData levelData;
-    public ReferencePaths rp = new ReferencePaths();
     public ReferenceObjects ro = new ReferenceObjects();
 
     public LevelDataWindow(Transform Parent, LevelData levelData)
@@ -68,7 +67,7 @@ public class LevelDataWindow
 
     public void Update()
     {
-        ro.GetReferences(window, rp);
+        ro.GetReferences(window);
 
         ro.title.text = levelData.info.name;
         ro.select.onClick.AddListener(Select);
@@ -77,17 +76,17 @@ public class LevelDataWindow
 
     public class ReferencePaths
     {
-        public string title = "Title/Text";
-        public string select = "Button";
+        public static string title = "Title/Text";
+        public static string select = "Button";
     }
     public class ReferenceObjects
     {
         public TMP_Text title;
         public Button select;
-        public void GetReferences(GameObject o, ReferencePaths p)
+        public void GetReferences(GameObject o)
         {
-            title = Game.GetReference<TMP_Text>(o, p.title);
-            select = Game.GetReference<Button>(o, p.select);
+            o.SetReference(title, ReferencePaths.title);
+            o.SetReference(select, ReferencePaths.select);
         }
     }
 
