@@ -1,0 +1,75 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using UnityEditor.VersionControl;
+using UnityEngine;
+using UnityEngine.UI;
+
+public static class LevelDataExtensions
+{
+    public static void LoadData(this LevelData levelData, bool music = false)
+    {
+        levelData.LoadResult();
+        levelData.LoadNoteMap();
+        levelData.LoadSprite();
+
+        if (music) levelData.LoadMusic();
+    }
+    public static void LoadMusic(this LevelData levelData)
+    {
+        string filePath = $"Game/Level/Music/{levelData.packName}/{levelData.levelName}/{levelData.musicName}";
+
+        Directory.CreateDirectory(
+            Application.dataPath +
+            "/Resources/" +
+            Path.GetDirectoryName(filePath)
+            ); Debug.Log($"Directory Created on {Path.GetDirectoryName(filePath + ".mp3")}");
+
+        AudioClip audioClip = Resources.Load<AudioClip>(filePath); Debug.Log($"Asset Loaded : {audioClip}");
+
+        levelData.musicClip = audioClip;
+
+    }
+    public static void UnLoadMusic(this LevelData levelData)
+    {
+        Resources.UnloadAsset(levelData.musicClip);
+    }
+
+    public static void LoadSprite(this LevelData levelData)
+    {
+        string filePath = $"Game/Level/Sprite/{levelData.packName}/{levelData.levelName}";
+
+        Directory.CreateDirectory(
+            Application.dataPath +
+            "/Resources/" +
+            Path.GetDirectoryName(filePath)
+            ); Debug.Log($"Directory Created on {Path.GetDirectoryName(filePath + ".png")}");
+
+
+
+        Sprite sprite = Resources.Load<Sprite>(filePath); Debug.Log($"Asset Loaded : {sprite}");
+
+        levelData.levelSprite = sprite;
+    }
+
+    public static void LoadNoteMap(this LevelData levelData)
+    {
+        Debug.Log("NoteMap");
+        string filePath = $"Game/Level/NoteMap/{levelData.packName}/{levelData.levelName}";
+
+        Directory.CreateDirectory(
+            Application.dataPath +
+            "/Resources/" +
+            Path.GetDirectoryName(filePath)
+            ); Debug.Log($"Directory Created on {Path.GetDirectoryName(filePath + ".json")}");
+
+        TextAsset textAsset = Resources.Load<TextAsset>(filePath); Debug.Log($"Asset Loaded : {textAsset}");
+
+        if (textAsset is null) return;
+
+        JsonUtility.FromJsonOverwrite(
+        textAsset.text,
+        levelData.noteMap
+        ); Debug.Log("Loading Sucess");
+    }
+}
