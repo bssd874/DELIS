@@ -25,6 +25,8 @@ public static class LevelDataExtensions
             Path.GetDirectoryName(filePath)
             ); Debug.Log($"Directory Created on {Path.GetDirectoryName(filePath + ".mp3")}");
 
+        levelData.ProcessLevelDataMusic();
+
         AudioClip audioClip = Resources.Load<AudioClip>(filePath); Debug.Log($"Asset Loaded : {audioClip}");
 
         levelData.musicClip = audioClip;
@@ -44,7 +46,6 @@ public static class LevelDataExtensions
             "/Resources/" +
             Path.GetDirectoryName(filePath)
             ); Debug.Log($"Directory Created on {Path.GetDirectoryName(filePath + ".png")}");
-
 
 
         Sprite sprite = Resources.Load<Sprite>(filePath); Debug.Log($"Asset Loaded : {sprite}");
@@ -72,4 +73,31 @@ public static class LevelDataExtensions
         levelData.noteMap
         ); Debug.Log("Loading Sucess");
     }
+
+    public static void ProcessLevelDataMusic(this LevelData levelData)
+    {
+        string filePath = $"Game/Level/Music/{levelData.packName}/{levelData.levelName}/{levelData.musicName}";
+
+        Directory.CreateDirectory(
+            Application.dataPath +
+            "/Resources/" +
+            Path.GetDirectoryName(filePath)
+            ); Debug.Log($"Directory Created on {Path.GetDirectoryName(filePath + ".mp3")}");
+
+        AudioClip[] audioClips = Resources.LoadAll<AudioClip>($"Game/Level/Music/{levelData.packName}/{levelData.levelName}");
+
+
+        AudioClip audioClip = null;
+        if (audioClips.Length > 0) audioClip = audioClips[0];
+
+        if (audioClip)
+        {
+            Debug.Log("Processed");
+
+            Debug.Log(
+                UnityEditor.AssetDatabase.RenameAsset($"Assets/Resources/Game/Level/Music/{levelData.packName}/{levelData.levelName}/{audioClip.name}.mp3", levelData.musicName)
+            );
+        }
+    }
+
 }

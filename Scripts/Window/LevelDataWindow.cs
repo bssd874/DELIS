@@ -22,7 +22,7 @@ public class LevelDataWindow : MonoBehaviour
         levelData.LoadData();
 
         title.text = levelData.levelName;
-        image.sprite = levelData.levelSprite;
+        //image.sprite = levelData.levelSprite;
 
         selectButton.onClick.AddListener(Select);
     }

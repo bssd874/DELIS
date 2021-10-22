@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 
 public class Gameplay : MonoBehaviour
 {
+    public static float delay = 0;
     public static Gameplay main;
     public static LevelData levelData;
     public LevelData _levelData;
@@ -16,15 +17,18 @@ public class Gameplay : MonoBehaviour
 
     public NoteRegister[] noteRegisters;
 
+    public LTDescr levelCompleteLT;
+
 
     private void Awake()
     {
         main = this;
-        if (levelData == null) levelData = _levelData;
     }
 
-    public static void Play(LevelData level)
+    public static void Play(LevelData level, float delay = -1)
     {
+        if (delay < 0) delay = LoadingScreen.processDuration / 2;
+        Gameplay.delay = delay;
         Gameplay.levelData = level;
         SceneManager.LoadScene("Gameplay");
     }
@@ -32,7 +36,15 @@ public class Gameplay : MonoBehaviour
     private void Start()
     {
 
+        if (levelData == null) levelData = _levelData;
+        LeanTween.delayedCall(
+            delay,
+            StartGame
+        );
+    }
 
+    public void StartGame()
+    {
         NoteRegister.registers = noteRegisters;
 
         levelData.LoadData(true);
@@ -42,10 +54,12 @@ public class Gameplay : MonoBehaviour
 
         Score.totalNotes = levelData.noteMap.TotalNotes();
 
+        if (Game.player.autohit) notePlayer.autohit = true;
 
         GameplayData.Reset();
         GameplayGUI.main.SCountdown.Countdown(4, LevelBegin);
     }
+
     public void LevelBegin()
     {
         UnFreeze();
@@ -54,7 +68,7 @@ public class Gameplay : MonoBehaviour
     }
     public void LevelEnd()
     {
-        LeanTween.delayedCall(3, () =>
+        levelCompleteLT = LeanTween.delayedCall(3, () =>
         {
             LoadingScreen.Load(() => GameplayGUI.main.SResult.Result());
         });
@@ -68,5 +82,20 @@ public class Gameplay : MonoBehaviour
     {
         audioSource.UnPause();
         Time.timeScale = 1;
+    }
+
+    public void Restart()
+    {
+        Time.timeScale = 1;
+        LoadingScreen.Load(() => Play(levelData));
+    }
+    public void Back()
+    {
+        if (levelCompleteLT != null) LeanTween.cancel(levelCompleteLT.id);
+        Time.timeScale = 1;
+
+        LevelPack levelPack = LevelSelector.levelPack;
+
+        if (levelPack) LoadingScreen.Load(() => { LevelSelector.Enter(levelPack); });
     }
 }

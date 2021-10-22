@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class NotePlayer : MonoBehaviour
 {
+    public float spawnDistance = 100;
     public bool autoplay = true;
     public bool autohit = false;
     public Transform noteArea;
@@ -30,7 +31,7 @@ public class NotePlayer : MonoBehaviour
     public void Spawn()
     {
         Note note = noteAnalyzer.notes[noteAnalyzer.index];
-        GameObject gameObject = GameObject.Instantiate(note.pack.register.instance, (Vector3)note.data.world + Vector3.forward * 100, Quaternion.identity, noteArea);
+        GameObject gameObject = GameObject.Instantiate(note.pack.register.instance, (Vector3)note.data.world + Vector3.forward * spawnDistance, Quaternion.identity, noteArea);
         gameObject.LeanMoveLocalZ(0, 1);
         if (autohit) LeanTween.delayedCall(-note.pack.register.offset, () => GameplayInput.RayInput(Camera.main.ViewportToScreenPoint(note.data.viewport)));
     }

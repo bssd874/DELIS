@@ -8,6 +8,7 @@ public class NoteRegister
 
     public static NoteRegister[] registers;
 
+
     public GameObject instance;
     public float offset = 0;
 }

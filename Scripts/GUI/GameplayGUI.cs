@@ -27,6 +27,7 @@ public class GameplayGUI : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("Updated");
         UpdateData();
         GameplayData.OnUpdateCombo.AddListener(UpdateCombo);
         GameplayData.OnUpdateScore.AddListener(UpdateScore);
@@ -34,11 +35,20 @@ public class GameplayGUI : MonoBehaviour
 
     public void UpdateCombo()
     {
-        RCombo.text = GameplayData._combo.ToString();
+        if (GameplayData._combo <= 3)
+        {
+            RCombo.text = "";
+        }
+        else
+        {
+            RCombo.text = GameplayData._combo.ToString();
+        }
+
 
         RCombo.gameObject.LeanCancel();
         RCombo.gameObject.LeanScale(Vector3.one, 0);
-        RCombo.gameObject.LeanScale(Vector3.one * 1.5f, 0.5f).setEasePunch();
+        RCombo.gameObject.LeanScale(Vector3.one * 1.25f, 0.5f).setEasePunch();
+
     }
     public void UpdateScore()
     {
@@ -46,11 +56,13 @@ public class GameplayGUI : MonoBehaviour
 
         RScore.gameObject.LeanCancel();
         RScore.gameObject.LeanScaleY(1, 0);
-        RScore.gameObject.LeanScaleY(2f, 0.5f).setEasePunch();
+        RScore.gameObject.LeanScaleY(1.5f, 0.5f).setEasePunch();
     }
 
     public void UpdateData()
     {
+        RBackground.transform.localScale = Vector3.one * 2.5f;
+        RBackground.gameObject.LeanScale(Vector3.one, 4).setEaseOutExpo().setIgnoreTimeScale(true);
         RBackground.sprite = Gameplay.levelData.levelSprite;
         RName.text = Gameplay.levelData.levelName.ToString();
         RMusic.text = Gameplay.levelData.musicName.ToString();

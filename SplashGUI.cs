@@ -8,36 +8,53 @@ public class SplashGUI : MonoBehaviour
     public AudioClip introMusic;
     public CanvasGroup SMK;
     public CanvasGroup KKSI;
-    public CanvasGroup DELIS;
-    public CanvasGroup TitleScreen;
+    public CanvasGroup Title;
+    public Button touchButton;
 
     private void Start()
     {
-        LeanAudio.play(introMusic);
         Time.timeScale = 1;
-        LTSeq sequence = LeanTween.sequence();
-        sequence.append(
-            SMK.LeanAlpha(1, 0.25f)
-        );
-        sequence.append(3);
-        sequence.append(
-            SMK.LeanAlpha(0, 0.25f)
-        );
-        sequence.append(1);
-        sequence.append(
-            KKSI.LeanAlpha(1, 0.25f)
-        );
-        sequence.append(1);
-        sequence.append(
-            KKSI.LeanAlpha(0, 0.25f)
-        );
-        sequence.append(1);
-        sequence.append(
-            DELIS.LeanAlpha(1, 0.25f)
-        );
-        sequence.append(0.5f);
-        sequence.append(
-            TitleScreen.LeanAlpha(1, 0.25f)
+        LeanAudio.play(introMusic);
+        SMKScreen();
+
+    }
+
+    public void SMKScreen()
+    {
+        SMK.LeanAlpha(1, 1).setOnComplete(
+            () =>
+            {
+                SMK.LeanAlpha(0, 0.75f).setDelay(0.25f).setOnComplete(
+                    () =>
+                    {
+                        KKSIScreen();
+                    }
+                ).setEaseInSine();
+            }
+        ).setEaseOutSine();
+    }
+    public void KKSIScreen()
+    {
+        KKSI.LeanAlpha(1, 1).setDelay(1.5f).setOnComplete(
+            () =>
+            {
+                KKSI.LeanAlpha(0, 0.75f).setDelay(0.5f).setOnComplete(
+                    () =>
+                    {
+                        TitleScreen();
+                    }
+                ).setEaseInSine();
+            }
+        ).setEaseOutSine();
+    }
+    public void TitleScreen()
+    {
+        Title.LeanAlpha(1, 0.5f).setDelay(1).setOnComplete(
+            () =>
+            {
+                touchButton.interactable = true;
+            }
         );
     }
+
 }

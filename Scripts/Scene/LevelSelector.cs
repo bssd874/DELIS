@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,11 +11,9 @@ public class LevelSelector : MonoBehaviour
     public static LevelData levelData;
     public LevelPack _levelPack;
 
-    public static void Enter(LevelPack levelPack = null)
+    public static void Enter(LevelPack levelPack)
     {
-        if (LevelSelector.levelPack is null) LevelSelector.levelPack = levelPack;
-
-        LevelSelector.levelPack.LoadMusics();
+        LevelSelector.levelPack = levelPack;
         SceneManager.LoadScene("LevelSelector");
     }
 
@@ -26,9 +25,10 @@ public class LevelSelector : MonoBehaviour
 
     private void Start()
     {
+        levelPack.LoadMusics();
         LevelDataSelector.main.CreateLevelDataWindows();
 
-        if (levelData) Select(levelData);
+        if (levelPack.levelDatas.Contains(levelData)) Select(levelData);
         else Select(levelPack.levelDatas[0]);
     }
 
@@ -52,5 +52,10 @@ public class LevelSelector : MonoBehaviour
                 Gameplay.Play(levelData);
             }
         });
+    }
+
+    public void Back()
+    {
+        LoadingScreen.Load(() => MainMenu.Menu());
     }
 }

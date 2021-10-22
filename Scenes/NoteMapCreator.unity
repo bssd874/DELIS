@@ -291,7 +291,7 @@ MonoBehaviour:
   touch: 1
   _levelData: {fileID: 11400000, guid: 41c679fd15db64140bdb2f6d805e87df, type: 2}
   notePackIndex: 0
-  notePackIndexString: 1
+  notePackIndexString: 0
   audioSource: {fileID: 902720571}
   creationArea: {fileID: 1335263330}
   trailRenderer: {fileID: 1691107462}

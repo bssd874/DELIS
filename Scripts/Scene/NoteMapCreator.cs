@@ -29,7 +29,7 @@ public class NoteMapCreator : MonoBehaviour
 
         if (GUILayout.Button("Back"))
         {
-            LevelSelector.Enter();
+            LevelSelector.Enter(LevelSelector.levelPack);
         }
 
         if (GUILayout.Button("Insert NotePack"))
@@ -94,7 +94,7 @@ public class NoteMapCreator : MonoBehaviour
         SLS.SaveJson<NoteMap>(
             noteMap,
             Application.dataPath,
-            $"/Resources/Game/Level/NoteMap/Personal Collections",
+            $"/Resources/Game/Level/NoteMap/{levelData.packName}",
             $"{levelData.levelName}"
         );
     }

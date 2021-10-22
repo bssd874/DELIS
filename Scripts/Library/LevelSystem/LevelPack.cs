@@ -28,4 +28,13 @@ public class LevelPack : ScriptableObject
         this.LoadLevelData();
     }
 
+    [ContextMenu("Process")]
+    public void Process()
+    {
+        foreach (LevelData data in levelDatas)
+        {
+            data.ProcessLevelDataMusic();
+        }
+    }
+
 }

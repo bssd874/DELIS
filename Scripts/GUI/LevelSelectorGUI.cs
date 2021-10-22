@@ -5,8 +5,5 @@ using UnityEngine.SceneManagement;
 
 public class LevelSelectorGUI : MonoBehaviour
 {
-    public void Back()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }
+
 }

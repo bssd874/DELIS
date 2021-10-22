@@ -12,22 +12,22 @@ public class MainMenu : MonoBehaviour
     private void Awake()
     {
         main = this;
-        levelPacks = LevelPackExtensions.LoadLevelPacks();
     }
 
     public static void Menu()
     {
-        LoadingScreen.Load(() => SceneManager.LoadScene("MainMenu"));
+        SceneManager.LoadScene("MainMenu");
     }
 
     private void Start()
     {
+        levelPacks = LevelPackExtensions.LoadLevelPacks();
 
         LoadingScreen.ScreenPrefab = loadingScreen;
 
         Player.Load(Game.player);
         JPanel.main.UpdatePanel();
-        PlayerPanel.main.UpdatePanel();
+        //PlayerPanel.main.UpdatePanel();
 
         LevelPackSelector.main.CreateLevelPackWindows();
     }

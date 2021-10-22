@@ -5,10 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class ResultScreen : MonoBehaviour
 {
+    public UserStats userStats;
     public void Result()
     {
         ApplyResult();
         gameObject.SetActive(true);
+
+        userStats.UpdateStats(Gameplay.levelData);
     }
 
     public void ApplyResult()

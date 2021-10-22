@@ -7,6 +7,11 @@ using UnityEngine.SceneManagement;
 public class PauseScreen : MonoBehaviour
 {
     public CountdownScreen SCountdown;
+
+    private void OnApplicationPause(bool pauseStatus)
+    {
+        Pause();
+    }
     public void Pause()
     {
         gameObject.SetActive(true);
@@ -22,13 +27,5 @@ public class PauseScreen : MonoBehaviour
         gameObject.SetActive(false);
         SCountdown.Countdown(3, UnPause);
     }
-    public void Restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-    public void Back()
-    {
-        Time.timeScale = 1;
-        SceneManager.LoadScene("LevelSelector");
-    }
+
 }

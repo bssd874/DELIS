@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Jawa
   m_EditorClassIdentifier: 
   packName: Jawa
-  cost: 0
+  cost: 10000
   levelDatas:
   - {fileID: 11400000, guid: 2559cecfcb82d1541b660f8d39bf733b, type: 2}
-  - {fileID: 11400000, guid: 347ea0e2ae10cee469de720334836e56, type: 2}
-  - {fileID: 11400000, guid: f8fbbf23187c99b459861cf8f9e30cd2, type: 2}
-  - {fileID: 11400000, guid: 1c72e0787a335a943a59f15685a4234a, type: 2}
-  - {fileID: 11400000, guid: e10ded4c02c70134e9f5e0654b8996bf, type: 2}
-  - {fileID: 11400000, guid: 32b064d29920ede4fb74cf5212a87aa9, type: 2}
+  - {fileID: 11400000, guid: 0f5165d65a1e8fd4b94e3a1082f56df7, type: 2}
+  - {fileID: 11400000, guid: f4ce8c05212fff94abf03ffcc67e9719, type: 2}
+  - {fileID: 11400000, guid: 35b144cad1d2a1a48be1658f66d267d3, type: 2}
+  - {fileID: 11400000, guid: a1f8cc9fe1dbc604587bc10be3d56603, type: 2}
+  - {fileID: 11400000, guid: 1a0b148141f79944396f3a7a6042ef1d, type: 2}

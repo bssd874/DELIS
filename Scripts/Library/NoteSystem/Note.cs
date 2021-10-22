@@ -18,7 +18,9 @@ public struct Note
     {
         get
         {
-            return data.time + (pack.register.offset);
+
+            return data.time + pack.register.offset;
+
         }
     }
 

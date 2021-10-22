@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 036a1d39e2c471d4ab908cd856cd9073, type: 3}
+  m_Name: Kepulauan Nusa Tenggara
+  m_EditorClassIdentifier: 
+  packName: Kepulauan Nusa Tenggara
+  cost: 10000
+  levelDatas:
+  - {fileID: 11400000, guid: c5b7078094218604483516d44c92a4ba, type: 2}
+  - {fileID: 11400000, guid: 9b94b6a2cbd5bd44da1e872f57c952d5, type: 2}
+  - {fileID: 11400000, guid: 44e8117a50510da45ababeab16eafc92, type: 2}

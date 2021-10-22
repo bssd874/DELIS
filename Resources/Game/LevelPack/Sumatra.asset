@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 036a1d39e2c471d4ab908cd856cd9073, type: 3}
+  m_Name: Sumatra
+  m_EditorClassIdentifier: 
+  packName: Sumatra
+  cost: 10000
+  levelDatas:
+  - {fileID: 11400000, guid: 751c460c0bea38645adf1fc3fdb0d6de, type: 2}
+  - {fileID: 11400000, guid: edc81cbbc8a14654f8044ba20de2fb94, type: 2}
+  - {fileID: 11400000, guid: 37ff13654559dbd41afc8e575fcfe45c, type: 2}
+  - {fileID: 11400000, guid: 3301f73628963ee4d9316fad062b98d6, type: 2}
+  - {fileID: 11400000, guid: 3bfc97a3342e8364d85244f5c48e1877, type: 2}
+  - {fileID: 11400000, guid: 7c4982a9ff9b34c448cfa4b6826bc648, type: 2}
+  - {fileID: 11400000, guid: ceb1f3ceb7463b34a86bb3e6015352e8, type: 2}
+  - {fileID: 11400000, guid: f114e4b9200479b49be1241790136ef5, type: 2}
+  - {fileID: 11400000, guid: d6b5cee3f746c0f4ea191c66358a3c6a, type: 2}
+  - {fileID: 11400000, guid: eaeee05c5f942aa4ea3c62725e6e3666, type: 2}

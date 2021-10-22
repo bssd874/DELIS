@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 036a1d39e2c471d4ab908cd856cd9073, type: 3}
+  m_Name: Sulawesi
+  m_EditorClassIdentifier: 
+  packName: Sulawesi
+  cost: 10000
+  levelDatas:
+  - {fileID: 11400000, guid: 92eb32f9fb4ca0b4281a92b68306f441, type: 2}
+  - {fileID: 11400000, guid: 88740836ae6eb88488a82edac041a95d, type: 2}
+  - {fileID: 11400000, guid: 6a9ca0403aff9d8488a993536cf28f43, type: 2}
+  - {fileID: 11400000, guid: 0bb3327931a4efc4fb2ec51a50d0c5a0, type: 2}
+  - {fileID: 11400000, guid: 1505dbd43b701ed459f5e3ef08aa13ce, type: 2}
+  - {fileID: 11400000, guid: 443de5850d4bd644b9c6ec5920b348d5, type: 2}
