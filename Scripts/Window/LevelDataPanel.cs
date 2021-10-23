@@ -6,6 +6,7 @@ using UnityEngine;
 public class LevelDataPanel : MonoBehaviour
 {
     public LevelData levelData;
+    public CanvasGroup canvasGroup;
     public TMP_Text RName;
     public TMP_Text RMusic;
 
