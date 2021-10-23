@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public static LevelPack levelPack;
     public static MainMenu main;
     public GameObject loadingScreen;
     public static LevelPack[] levelPacks;
@@ -33,17 +32,8 @@ public class MainMenu : MonoBehaviour
         LevelPackSelector.main.CreateLevelPackWindows();
     }
 
-    public void Select(LevelPack pack)
+    public void Enter(LevelPack levelPack)
     {
-        levelPack = pack;
-    }
-
-    public void Enter(LevelPack pack = null)
-    {
-        if (pack) levelPack = pack;
-
-        if (!levelPack) return;
-
         LoadingScreen.Load(() => LevelSelector.Enter(levelPack));
     }
 

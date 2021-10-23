@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class LevelPackSelector : MonoBehaviour
 {
     public static LevelPackSelector main;
     public GameObject levelPackWindowPrefab;
     public LevelPackWindow[] levelPackWindows;
-
-    public LayoutGroup levelPackLayoutGroup;
-    public ContentSizeFitter contentSizeFitter;
-
     public GameObject levelPackSelectionGrid;
 
     private void Awake()
@@ -38,22 +33,9 @@ public class LevelPackSelector : MonoBehaviour
             LevelPackWindow levelPackWindow = window.GetComponent<LevelPackWindow>();
             levelPackWindow.levelPack = levelPacks[i];
 
-            levelPackWindow.levelPackSelector = this;
-
             levelPackWindow.Initialize();
 
             levelPackWindows[i] = levelPackWindow;
-        }
-    }
-
-    public void ShrinkWindow()
-    {
-        foreach (LevelPackWindow levelPackWindow in levelPackWindows)
-        {
-            if (levelPackWindow.expand)
-            {
-                levelPackWindow.ShrinkWindow();
-            }
         }
     }
 }

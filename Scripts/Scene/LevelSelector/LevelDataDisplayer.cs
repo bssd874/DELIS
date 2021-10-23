@@ -8,7 +8,6 @@ public class LevelDataDisplayer : MonoBehaviour
     public GameObject levelDataPanelPrefab;
     public LevelDataPanel[] levelDataPanels;
     public GameObject levelDataSelectionGrid;
-    public AudioClip panelAudio;
 
     [ContextMenu("Create Windows")]
     public void CreateLevelDataPanels()
@@ -30,35 +29,6 @@ public class LevelDataDisplayer : MonoBehaviour
             levelDataPanel.Initialize();
 
             levelDataPanels[i] = levelDataPanel;
-        }
-    }
-
-    public void HideLevelDataPanels()
-    {
-        foreach (LevelDataPanel panel in levelDataPanels)
-        {
-            panel.gameObject.LeanCancel();
-            panel.canvasGroup.alpha = 0;
-            panel.transform.localScale = Vector3.one * 0.25f;
-        }
-    }
-
-    public void ExpandLevelDataPanels()
-    {
-        HideLevelDataPanels();
-        LTSeq sequence = LeanTween.sequence();
-        foreach (LevelDataPanel panel in levelDataPanels)
-        {
-            LTDescr lTDescr = LeanTween.delayedCall(0.05f,
-                () =>
-                {
-                    LeanAudio.play(panelAudio);
-                    panel.canvasGroup.LeanAlpha(1, 0.5f).setEaseOutExpo();
-                    panel.gameObject.LeanScale(Vector3.one, 0.5f).setEaseOutExpo();
-                }
-            );
-
-            sequence.append(lTDescr);
         }
     }
 }

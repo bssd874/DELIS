@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -89,7 +90,6 @@ public static class LevelDataExtensions
         AudioClip audioClip = null;
         if (audioClips.Length > 0) audioClip = audioClips[0];
 
-        /*
         if (audioClip)
         {
             Debug.Log("Processed");
@@ -98,7 +98,6 @@ public static class LevelDataExtensions
                 UnityEditor.AssetDatabase.RenameAsset($"Assets/Resources/Game/Level/Music/{levelData.packName}/{levelData.levelName}/{audioClip.name}.mp3", levelData.musicName)
             );
         }
-        */
     }
 
 }
